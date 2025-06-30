@@ -1,12 +1,159 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+  generator client {
+    provider = "prisma-client-js"
+  }
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
-}
+  datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+  }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
+  model Account {
+    id                String  @id @default(cuid())
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+  }
+
+  model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  }
+
+  model User {
+    id            String    @id @default(cuid())
+    email         String?   @unique
+    emailVerified DateTime?
+    pseudonym     String    @unique
+    avatarSeed    String    @default(cuid())
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @updatedAt
+    
+    accounts      Account[]
+    sessions      Session[]
+    stories       Story[]
+    comments      Comment[]
+    trustedCircles TrustedCircle[]
+    circleMembers CircleMember[]
+    reports       Report[]
+  }
+
+  model Story {
+    id               String   @id @default(cuid())
+    title            String
+    content          String?
+    contentType      String   @default("text") // text, audio, video, image, mixed
+    mediaFiles       Json?    // Array of file paths
+    tags             Json?    // Array of tags
+    contentWarnings  Json?    // Array of content warnings
+    
+    // Privacy settings
+    visibility       String   @default("private") // private, trusted_circle,
+  anonymous_public, selected_users
+    trustedCircleId  String?
+    selectedUserIds  Json?    // Array of user IDs when visibility is selected_users
+    expiresAt        DateTime?
+    publishAt        DateTime?
+    geoRestrictions  Json?    // Array of blocked countries/regions
+    searchIndexable  Boolean  @default(false)
+    
+    authorId         String
+    createdAt        DateTime @default(now())
+    updatedAt        DateTime @updatedAt
+    
+    author           User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    trustedCircle    TrustedCircle? @relation(fields: [trustedCircleId], references: [id])
+    comments         Comment[]
+    reports          Report[]
+  }
+
+  model Comment {
+    id        String   @id @default(cuid())
+    content   String
+    isAnonymous Boolean @default(true)
+    
+    storyId   String
+    authorId  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    
+    story     Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
+    author    User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    reports   Report[]
+  }
+
+  model TrustedCircle {
+    id          String   @id @default(cuid())
+    name        String
+    description String?
+    isPrivate   Boolean  @default(true)
+    maxMembers  Int      @default(10)
+    
+    creatorId   String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    
+    creator     User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+    members     CircleMember[]
+    stories     Story[]
+  }
+
+  model CircleMember {
+    id        String   @id @default(cuid())
+    userId    String
+    circleId  String
+    role      String   @default("member") // member, moderator
+    joinedAt  DateTime @default(now())
+    
+    user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    circle    TrustedCircle @relation(fields: [circleId], references: [id], onDelete: 
+  Cascade)
+    
+    @@unique([userId, circleId])
+  }
+
+  model Report {
+    id        String   @id @default(cuid())
+    reason    String
+    details   String?
+    status    String   @default("pending") // pending, reviewed, resolved, dismissed
+    
+    reporterId String
+    storyId    String?
+    commentId  String?
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+    
+    reporter   User @relation(fields: [reporterId], references: [id], onDelete: Cascade)
+    story      Story? @relation(fields: [storyId], references: [id], onDelete: Cascade)
+    comment    Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  }
+
+  model CommunityResource {
+    id          String   @id @default(cuid())
+    title       String
+    description String
+    url         String?
+    content     String?
+    category    String   // mental_health, legal_aid, domestic_violence, immigration, etc.
+    isUKSpecific Boolean @default(true)
+    isEmergency Boolean @default(false)
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+  }
+  
