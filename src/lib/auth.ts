@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = user.id
                 //Get user's pseudonym from database
                 const dbUser = await prisma.user.findUnique({
-                    where: { id: user.id }
+                    where: { id: user.id },
                     select: { pseudonym: true, avatarSeed: true}
                 })
                 if (dbUser) {
