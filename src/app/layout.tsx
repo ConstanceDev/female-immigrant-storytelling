@@ -31,9 +31,7 @@ export default function RootLayout({
       >
         {children}
         <AuthProvider>
-          <Theme>
-            {children}
-          </Theme>
+          {children}
         </AuthProvider>
       </body>
     </html>

@@ -7,17 +7,28 @@ export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            clientId: process.env.GOOGLE_CLIENT_ID || "dummy-client-id",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || "dummy-client-secret",
         }),
     ],
     callbacks: {
         async signIn({ user, account, profile }) {
             if (account?.provider === "google") {
-                //generate an unique pseudonym for new users
-                if(!user.id) {
-                    const pseudonym = await generateUniquePseudonym()
-                    user.name = pseudonym
+                try {
+                    // Check if user already has a pseudonym
+                    const existingUser = await prisma.user.findUnique({
+                        where: { email: user.email! },
+                        select: { pseudonym: true }
+                    })
+                    if (!existingUser?.pseudonym) {
+                        const pseudonym = await generateUniquePseudonym()
+                        await prisma.user.update({
+                            where: { email: user.email! },
+                            data: { pseudonym }
+                        })
+                    }
+                } catch (error) {
+                    console.error("Error in signIn callback:", error)
                 }
             }
             return true
@@ -25,26 +36,30 @@ export const authOptions: NextAuthOptions = {
         async session({ session, user }) {
             if(session.user) {
                 session.user.id = user.id
-                //Get user's pseudonym from database
+                try {
+                // Get user's pseudonym from database
                 const dbUser = await prisma.user.findUnique({
                     where: { id: user.id },
-                    select: { pseudonym: true, avatarSeed: true}
+                    select: { pseudonym: true, avatarSeed: true }
                 })
                 if (dbUser) {
                     session.user.pseudonym = dbUser.pseudonym
                     session.user.avatarSeed = dbUser.avatarSeed
                 }
+            } catch (error) {
+                console.error("Error in session callback:", error)
             }
+        }
             return session
         },
     },
     pages: {
         signIn: "/auth/signin",
-        signUp: "/auth/signup",
     },
     session: {
         strategy: "database",
     },
+    debug: process.env.NODE_ENV === "development",
 }
 
 async function generateUniquePseudonym(): Promise<string> {
