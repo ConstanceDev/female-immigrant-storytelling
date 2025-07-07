@@ -61,7 +61,10 @@ export default function Dashboard() {
              <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Create New Story Card */}
-                    <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card 
+                        className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                        onClick={() => router.push("/stories/create")} 
+                        >
                         <Flex direction="column" gap="4" align="center">
                             <div className="w-12 h-12 bg-purple-100 rounded-full flx items-center justify-center">
                                 <Text size="6">✍️</Text>
@@ -77,7 +80,10 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Browse Stories Card */} 
-                    <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card 
+                        className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                        onClick={() => router.push("/stories/public")}
+                        >
                         <Flex direction="column" gap="4" align="center">
                             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                 <Text size="4">📚</Text>
@@ -93,7 +99,10 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Community Resources Card */}  
-                    <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card 
+                        className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                        onClick={() => router.push("/resources")} 
+                        >
                         <Flex direction="column" gap="4" align="center">
                             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                                 <Text size="6">🤝</Text>
