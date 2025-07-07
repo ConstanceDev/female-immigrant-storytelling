@@ -1,6 +1,7 @@
   "use client"
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { Button, Text, Flex, Heading, Card } from "@radix-ui/themes"
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
     }
 
     const handleBrowsePublic = () => {
-  router.push("/stories/public")
+      router.push("/stories/public")
     }
 
     return (

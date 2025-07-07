@@ -36,6 +36,8 @@ export default function Dashboard() {
         backgroundType: ['solid']
     })
 
+    const avatarUrl = avatar.toDataUri()
+
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
@@ -45,7 +47,7 @@ export default function Dashboard() {
                         <Heading size="5">Your Stories</Heading>
                         <Flex align="center" gap="3">
                             <Avatar 
-                                src={avatar.toDataUriSync()}
+                                src={avatarUrl}
                                 fallback={session.user?.pseudonym?.[0] || "U"}
                                 size="2"
                             />

@@ -28,7 +28,6 @@ export default function SignIn() {
     }
 
     const handleAnonymousAccess = () => {
-        // For anonymous browsing,redirect to public stories
         router.push("/stories/public")
     }
 
@@ -37,11 +36,11 @@ export default function SignIn() {
         from-purple-50 to-pink-50 p-4">
             <Card className="w-full max-w-md p-6">
                 <Flex direction="column" gap="6" align="center">
-                    <Heading size="6" className="text-center">
+                    <Heading size="6" style={{ color: 'rgb(17 24 39)' }}>
                         Welcome to your Safe Space!
                     </Heading>
 
-                    <Text size="3" className="text-center text-gray-600">
+                    <Text size="3" style={{ color: 'rgb(75 85 99)' }}>
                         A privacy first platform for sharing your story
                     </Text>
 
@@ -50,7 +49,8 @@ export default function SignIn() {
                             size="3"
                             onClick={handleGoogleSignIn}
                             disabled={isLoading}
-                            className="w-full bg-blue-600 hover:bg-blue-700"
+                            style={{ backgroundColor: 'rgb(37 99 235)', color: 'white' }} 
+                            className="w-full"
                         >
                             {isLoading ? "Signing in..." : "Continue with Google"}
                         </Button>
@@ -65,8 +65,8 @@ export default function SignIn() {
                         </Button>
                     </Flex>
 
-                    <div className="text-xs text-gray-500 text-center">
-                        <Text size="1">
+                    <div className="text-center">
+                        <Text size="1" style={{ color: 'rgb(107 114 128)' }}>
                             Your privacy is our priority. we never track or store unnecessary data.
                             <br />
                         </Text>
