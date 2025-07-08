@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/providers/session-provider";
+import SafetyButton from "@/components/safety/SafetyButton";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         <AuthProvider>
           <Theme>
             {children}
+            <SafetyButton />
           </Theme>
         </AuthProvider>
       </body>
