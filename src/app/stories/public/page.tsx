@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { createAvatar } from "@dicebear/core"
 import { initials } from '@dicebear/collection'
+import ContentWarning from "@/components/safety/ContentWarning"
 
 interface Story {
     id: string
@@ -227,9 +228,11 @@ export default function PublicStories() {
 
               {/* Story Content */}
               <div className="prose max-w-none mb-6">
-                <div className="whitespace-pre-wrap text-gray-800 text-lg leading-relaxed">
+              <ContentWarning warnings={selectedStory.contentWarnings || {}}>
+                    <div className="whitespace-pre-wrap text-gray-800 text-lg leading-relaxed">
                   {selectedStory.content}
                 </div>
+              </ContentWarning>
               </div>
 
               {/* Tags */}
