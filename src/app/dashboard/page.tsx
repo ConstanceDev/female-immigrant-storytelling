@@ -46,12 +46,18 @@ export default function Dashboard() {
                     <Flex justify="between" align="center" className="h-16">
                         <Heading size="5">Your Stories</Heading>
                         <Flex align="center" gap="3">
-                            <Avatar 
+                            <Button
+                                variant="ghost"
+                                onClick={() => router.push("/profile")}  
+                                className="flex items-center gap-2"
+                            >
+                                <Avatar 
                                 src={avatarUrl}
                                 fallback={session.user?.pseudonym?.[0] || "U"}
                                 size="2"
-                            />
-                            <Text size="2">{session.user?.pseudonym || session.user?.name}</Text>
+                                />
+                                <Text size="2">{session.user?.pseudonym || session.user?.name}</Text>
+                            </Button>
                         </Flex>
                     </Flex>
                 </div>
