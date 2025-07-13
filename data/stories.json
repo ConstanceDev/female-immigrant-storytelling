@@ -1,0 +1,152 @@
+[
+  {
+    "id": "1752255498443",
+    "title": "Test",
+    "content": "Test story",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": "",
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-11T17:38:18.443Z",
+    "updatedAt": "2025-07-11T17:38:18.443Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1752256700816",
+    "title": "Test 2",
+    "content": "This is a story for testing ",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": "",
+    "visibility": "private",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-11T17:58:20.816Z",
+    "updatedAt": "2025-07-11T17:58:20.816Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1752256743769",
+    "title": "Test 3",
+    "content": "This is a public story testing ",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": "",
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-11T17:59:03.769Z",
+    "updatedAt": "2025-07-11T17:59:03.769Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1752257685607",
+    "title": "Test for content warning",
+    "content": "Test for content warning. This is a test story.",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": "Test",
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-11T18:14:45.607Z",
+    "updatedAt": "2025-07-11T18:14:45.607Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1752274098333",
+    "title": "Test 4",
+    "content": "Test: if no warning keyword, display content warnings?",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-11T22:48:18.333Z",
+    "updatedAt": "2025-07-11T22:48:18.333Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1752328638044",
+    "title": "Test 5",
+    "content": "\n\n\n\n\n\nThis is test for long story:  Over the past 21 long months of Israel’s genocidal war on Gaza, voices all over the world have decried the demise of international law and the rule-based order. And indeed, the facade of Israel’s adherence to international law has vanished and policies that constitute war crimes are now brazenly declared.\n\nThis week, Israel’s defence minister, Israel Katz, has shared plans to forcibly move Palestinians into a camp in the ruins of Rafah. Once they enter, they cannot leave. In other words, a concentration camp, which by definition is an internment centre for members of a national group (as well as political prisoners or minority groups) on the grounds of security or punishment, usually by military order. Michael Sfard, an Israeli human rights lawyer, was quoted in the Guardian as saying that Katz “laid out an operational plan for a crime against humanity”. Hundreds have been killed and thousands wounded trying to access food.\n\nI have tried hard to understand the incomprehensible suffering endured by Palestinians in Gaza and how it is that most Israelis do not acknowledge their humanity. How are they able to show no remorse for what their army is carrying out in their name? I believe the seed of our dehumanisation was planted during the Arab-Israeli war in 1948. Palestinians were violently deprived of land, property and belongings in what we would come to call the Nakba (Arabic for “the catastrophe”), on the grounds that the land was God-given to the Jewish people. From that time, Israelis have been able to use Arab homes, lands and orchards without any feeling of guilt. The 7 October attacks were the starting point of the war, but Israel has been systematically degrading and dispossessing the Palestinian people for decades.\n\nSuch violations of international law lead to a feeling of despair about the inability of institutions to prevent the horrors of Israeli actions in Gaza and the West Bank and to hold perpetrators to account. The UN-backed international criminal court has issued arrest warrants for Netanyahu and former defence minister Yoav Gallant over allegations of “the war crime of starvation as a method of warfare; and the crimes against humanity of murder, persecution and other inhumane acts”. No arrests have been made. The west continues to supply military and political support to Israel. I ask myself: should we Palestinians feel helpless in the face of this failure?\n\nAnd yet the truth is that international law, though used as a measuring stick and point of reference by human rights organisations, has never been Palestine’s salvation. Ever since the failure to implement the 1948 UN resolution 194, which gave Palestinian refugees the right to return to their homes in what became Israel, we have been disappointed again and again.\n\nThis has not been for lack of attempts by Palestinians over the years to invoke the law – whether through Israeli courts, international tribunals or third-party enforcement mechanisms. One simple reason for their failure has been that international law lacks effective means of enforcement. More complex reasons rest with the interests of the powerful. My hope lies in Palestinian resilience.\n\nThe prevalent hope and expectation was that the Palestinians would forget their land in a generation or two. This proved totally unfounded. Seventy-seven years later, Palestinians are as attached to the land they were forced from as in those first few bloody days.\n\nLikewise with all the illegal changes and extensive Jewish settlement and altered geography in my home, the West Bank, we Palestinians continue to hold on to the practice we call sumoud: refusing to give up or leave. I cannot speak for Palestinians in Gaza, but I can see that we share the same spirit despite the immensity of the suffering.\n\nWhen the war ends, and journalists and foreign organisations are allowed access to Gaza, the truth will emerge. The heart-wrenching first-hand accounts by those living there – the experiences of the women, men and children, of artists, writers and poets; lives cut short, or changed irrevocably – may yet come to haunt Israelis.\n\nIt will be our humanity, not any international law, that will judge and hold Israel and its allies accountable. On a different scale but in no less glaring a manner, the illegal unilateral changes that Israel is carrying out in the West Bank, often with the aid of settler militias, will provide an image of Israeli greed for land and its ideologically driven policies.\n\nPerhaps there is no better example of the absurdity of Israel’s actions than the case of the Old City of Hebron. The city is held hostage by a small group of Jewish extremists numbering 900 who live in the centre of Hebron – the second-largest Palestinian city in the West Bank, with a population of 232,500. The Jewish population is protected day and night by more than 1,000 Israeli soldiers. To allow settlers and soldiers to move freely, restrictions on Palestinian movement include dozens of fortified checkpoints, roadblocks and permanent and temporary military posts. The old city has practically been emptied of its Palestinian population. Is this sustainable?\n\nAs far as the future of Gaza is concerned, the question that is going to be crucial is whether, with the destruction of the means of surviving – the farmland, water supplies, hospitals and schools – the land can continue to sustain life.\n\nThe world community that has shamefully failed to enforce international law could make a difference on this matter if it insists that, after the end of hostilities, Israel allows the opening of the Gaza Strip and ensures that aid is brought to enable Palestinians to continue living there while the area is rebuilt.\n\nGaza has a history of 4,000 years of continuous human habitation. Israel’s attempt at causing life there to cease is doomed to fail. Palestinians will, either with the help of others or without, find a way to survive.\n\nRaja Shehadeh is a Palestinian lawyer and writer, and founder of the human rights organisation Al-Haq. His latest book is Forgotten: Searching for Palestine’s Hidden Places and Lost Memorials, with Penny Johnson.\n\nNow is not the time to look away\nIt’s the Guardian’s job to keep a close focus on events in the Middle East for our global audience. \n\nWith reporters sharing live updates around the clock, including from inside Gaza, we’re well-placed to provide comprehensive, fact-checked reporting to show the world what is happening in the region. But we can’t do it without your support.\n\nWe rely on the generosity of our readers, whose support helps to keep our correspondents on the ground and our reporting free from commercial or political influence. \n\nWe appreciate that not everyone can afford to pay for news, but if you can, can we count on your support? Here are three good reasons to make the choice to fund us today:\n\n1. Our quality, investigative journalism is a scrutinising force.\n\n2. We are independent and have no billionaire owner dictating what we do – your money directly powers our reporting.\n\n3. It doesn’t cost much, and takes less time than it took to read this message.",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-12T13:57:18.044Z",
+    "updatedAt": "2025-07-12T13:57:18.044Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  }
+]
