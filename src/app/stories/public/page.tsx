@@ -98,8 +98,7 @@
       return (
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600
-   mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">Loading stories...</p>
           </div>
         </div>
@@ -122,8 +121,7 @@
                 </button>
                 <button
                   onClick={() => router.push("/auth/signin")}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2
-  rounded-lg font-medium transition-colors"
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 >
                   Share Your Story
                 </button>
@@ -142,8 +140,7 @@
               </p>
               <button
                 onClick={() => router.push("/auth/signin")}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg
-   font-medium transition-colors"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Get Started
               </button>
@@ -153,15 +150,13 @@
               {stories.map((story) => (
                 <div
                   key={story.id}
-                  className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 
-  hover:shadow-md transition-shadow cursor-pointer"
+                  className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer"
                   onClick={() => setSelectedStory(story)}
                 >
                   {/* Content Warnings */}
                   {hasContentWarnings(story.contentWarnings) && (
                     <div className="mb-3">
-                      <div className="inline-flex items-center px-2 py-1 rounded-full 
-  text-xs font-medium bg-yellow-100 text-yellow-800">
+                      <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                         ⚠️ Content Warning
                       </div>
                     </div>
@@ -183,8 +178,7 @@
                       {story.tags.slice(0, 3).map((tag, index) => (
                         <span
                           key={index}
-                          className="inline-flex items-center px-2 py-1 rounded-full text-xs
-   font-medium bg-purple-100 text-purple-800"
+                          className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
                         >
                           {tag}
                         </span>
@@ -205,8 +199,7 @@
                         alt="Author avatar"
                         className="w-8 h-8 rounded-full mr-2"
                       />
-                      <span className="text-sm 
-  text-gray-700">{story.author.pseudonym}</span>
+                      <span className="text-sm text-gray-700">{story.author.pseudonym}</span>
                     </div>
                     <div className="text-sm text-gray-500">
                       {formatDate(story.createdAt)}
@@ -215,8 +208,7 @@
 
                   {/* Comments count */}
                   <div className="mt-3 text-sm text-gray-500">
-                    💬 {story._count.comments} {story._count.comments === 1 ? 'comment' :
-  'comments'}
+                    💬 {story._count.comments} {story._count.comments === 1 ? 'comment' :'comments'}
                   </div>
                 </div>
               ))}
@@ -226,24 +218,20 @@
 
         {/* Story Modal */}
         {selectedStory && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center 
-  justify-center p-4 z-50">
-            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] 
-  overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 {/* Modal Header */}
                 <div className="flex justify-between items-start mb-6">
                   <div>
-                    {console.log('Debug: hasWarnings =', hasContentWarnings(selectedStory.contentWarnings))}
-                    {hasContentWarnings(selectedStory.contentWarnings) && (
+                    {/* Proper conditional banner */}
+                    {hasContentWarnings(selectedStory.contentWarnings) ? (
                       <div className="mb-3">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full 
-  text-sm font-medium bg-yellow-100 text-yellow-800">
-                          ⚠️ Content Warning:
-  {getContentWarningsText(selectedStory.contentWarnings)}
+                        <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                          ⚠️ Content Warning: {getContentWarningsText(selectedStory.contentWarnings)}
                         </div>
                       </div>
-                    )}
+                    ) : null}
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">
                       {selectedStory.title}
                     </h2>
@@ -254,10 +242,8 @@
                         className="w-10 h-10 rounded-full mr-3"
                       />
                       <div>
-                        <p className="font-medium 
-  text-gray-900">{selectedStory.author.pseudonym}</p>
-                        <p className="text-sm 
-  text-gray-500">{formatDate(selectedStory.createdAt)}</p>
+                        <p className="font-medium text-gray-900">{selectedStory.author.pseudonym}</p>
+                        <p className="text-sm text-gray-500">{formatDate(selectedStory.createdAt)}</p>
                       </div>
                     </div>
                   </div>
@@ -271,10 +257,8 @@
 
                 {/* Story Content */}
                 <div className="prose max-w-none mb-6">
-                  <ContentWarning 
-  warnings={getContentWarningsArray(selectedStory.contentWarnings)}>
-                    <div className="whitespace-pre-wrap text-gray-800 text-lg 
-  leading-relaxed">
+                  <ContentWarning warnings={getContentWarningsArray(selectedStory.contentWarnings)}>
+                    <div className="whitespace-pre-wrap text-gray-800 text-lg leading-relaxed">
                       {selectedStory.content}
                     </div>
                   </ContentWarning>
@@ -286,8 +270,7 @@
                     {selectedStory.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm 
-  font-medium bg-purple-100 text-purple-800"
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800"
                       >
                         {tag}
                       </span>
@@ -303,8 +286,7 @@
                     </p>
                     <button
                       onClick={() => router.push("/auth/signin")}
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3
-  rounded-lg font-medium transition-colors"
+                      className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                     >
                       Share Your Story
                     </button>

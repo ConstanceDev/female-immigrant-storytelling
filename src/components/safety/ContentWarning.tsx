@@ -9,20 +9,10 @@
   }
 
   export default function ContentWarning({ warnings, children }: ContentWarningProps) {
-    // Create a unique key for this warning instance
-    const warningKey = `content-warning-${JSON.stringify(warnings)}`
-
-    // Initialize state from sessionStorage immediately
-    const [showContent, setShowContent] = useState(() => {
-      if (typeof window !== 'undefined') {
-        return sessionStorage.getItem(warningKey) === 'true'
-      }
-      return false
-    })
+    const [showContent, setShowContent] = useState(false)
 
     const handleShowContent = () => {
       setShowContent(true)
-      sessionStorage.setItem(warningKey, 'true')
     }
 
     // Ensure warnings is always an array
