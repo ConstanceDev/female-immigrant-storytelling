@@ -5,6 +5,7 @@
   import { createAvatar } from '@dicebear/core'
   import { initials } from '@dicebear/collection'
   import ContentWarning from "@/components/safety/ContentWarning"
+  import Comments from "@/components/stories/Comments"
 
   interface Story {
     id: string
@@ -277,6 +278,9 @@
                     ))}
                   </div>
                 )}
+
+                {/* Comments Section */} 
+                <Comments storyId={selectedStory.id}/>
 
                 {/* Call to Action */}
                 <div className="border-t pt-6">
