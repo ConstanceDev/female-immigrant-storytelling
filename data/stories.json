@@ -148,30 +148,5 @@
     "_count": {
       "comments": 0
     }
-  },
-  {
-    "id": "1752447706425",
-    "title": "Test 6: Delete",
-    "content": "Testing story for deletion",
-    "contentType": "text",
-    "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": [],
-    "visibility": "anonymous_public",
-    "selectedUserIds": [],
-    "expiresAt": null,
-    "publishAt": null,
-    "geoRestrictions": [],
-    "searchIndexable": false,
-    "authorId": "118081953351798648892",
-    "createdAt": "2025-07-13T23:01:46.425Z",
-    "updatedAt": "2025-07-13T23:01:46.425Z",
-    "author": {
-      "pseudonym": "Constance",
-      "avatarSeed": "118081953351798648892"
-    },
-    "_count": {
-      "comments": 0
-    }
   }
 ]
