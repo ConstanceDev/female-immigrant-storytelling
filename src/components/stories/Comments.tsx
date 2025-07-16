@@ -28,6 +28,7 @@ export default function Comments({ storyId }: CommentsProps) {
     const [newComment, setNewComment] = useState('')
     const [loading, setLoading] = useState(true)
     const [submitting, setSubmitting] = useState(false)
+    const [deletingCommentId, setDeletingCommentId] = useState<string | null>(null)
 
     useEffect(() => {
         fetchComments()
@@ -93,6 +94,33 @@ const submitComment = async () => {
             hour: '2-digit',
             minute: '2-digit'
         })
+    }
+
+    const deleteComment = async (commentId: string) => {
+        if (!session) return
+
+        if (!confirm('Are you sure you want to delete this comment? This action cannot be undone.')) {
+            return
+        }
+
+        setDeletingCommentId(commentId)
+        try {
+            const response = await fetch(`/api/stories/${storyId}/comments?commentId=${commentId}`, {
+                method: 'DELETE'
+            })
+
+            if (response.ok) {
+                setComments(comments.filter(comment => comment.id !== commentId))
+            } else {
+                const errorData = await response.json()
+                alert(errorData.error || 'Failed to delte comment. Please try again.')
+            }
+        } catch (error) {
+            console.error("Error deleting comment:", error)
+            alert('Failed to delete comment. Please try again.')
+        } finally {
+            setDeletingCommentId(null)
+        }
     }
 
     return (
@@ -165,9 +193,24 @@ const submitComment = async () => {
                     <Text size="2" weight="medium">
                       {comment.author.pseudonym}
                     </Text>
-                    <Text size="1" className="text-gray-500">
-                      {formatDate(comment.createdAt)}
-                    </Text>
+                    <Flex gap="2" align="center">
+                        <Text size="1" className="text-gray-500">
+                        {formatDate(comment.createdAt)}
+                        </Text>
+                        {session?.user?.id === comment.authorId && (
+                            <Button
+                                style={{
+                                    backgroundColor: '#e63946',
+                                    color: 'white',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                onClick={() => deleteComment(comment.id)} 
+                                disabled={deletingCommentId === comment.id} 
+                            >
+                                {deletingCommentId === comment.id? 'Deleting...' : 'Delete'}
+                            </Button>
+                        )}
+                    </Flex>
                   </Flex>
                   <Text size="2" className="whitespace-pre-wrap">
                     {comment.content}

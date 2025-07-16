@@ -6,7 +6,7 @@ import path from 'path'
 
 export async function POST(
     req: NextRequest,
-    { params } : { params : { id: string } } 
+    { params } : { params : Promise<{ id: string }> } 
 ) {
     try {
         const session = await getServerSession(authOptions)
@@ -18,7 +18,7 @@ export async function POST(
             )
         }
 
-        const storyId = params.id
+        const { id: storyId } = await params 
         const body = await req.json()
         const { content } = body
 
@@ -37,7 +37,7 @@ export async function POST(
         }
 
         const commentsFile = path.join(dataDir, 'comments.json')
-        const userFile = path.join(dataDir, 'user.json')
+        const userFile = path.join(dataDir, 'users.json')
         const storiesFile = path.join(dataDir, 'stories.json')
 
         // Read existing comments
@@ -83,12 +83,20 @@ export async function POST(
         }
 
         // Find the author
-        const author = users.find(u => u.id === session.user.id)
+        let author = users.find(u => u.id === session.user.id)
         if (!author) {
-            return NextResponse.json(
-                { error: "User not found" },
-                { status: 400 }
-            )
+            // Create a new user entry if not found
+            author = {
+                id: session.user.id,
+                email: session.user.email,
+                name: session.user.name,
+                pseudonym: session.user.name || `Anonymous_${Date.now()}`,
+                avatarSeed: session.user.id,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+            }
+            users.push(author)
+            fs.writeFileSync(userFile, JSON.stringify(user, null, 2))
         }
 
         // Create the comment
@@ -97,8 +105,8 @@ export async function POST(
             storyId,
             content: content.trim(),
             authorId: session.user.id,
-            createdAt: new Date().toISOString,
-            updatedAt: new Date().toISOString,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
             author: {
                 pseudonym: author.pseudonym,
                 avatarSeed: author.avatarSeed,
@@ -108,8 +116,9 @@ export async function POST(
         comments.push(comment)
 
         // Save comments back to file
-        fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2))
 
+        fs.writeFileSync(commentsFile, JSON.stringify(comments, null, 2))
+        
         // Update story comment count
         const storyIndex = stories.findIndex(s => s.id === storyId)
         if (storyIndex !== -1) {
@@ -130,18 +139,17 @@ export async function POST(
 
 export async function GET(
      req: NextRequest,
-    { params } : { params : { id: string } }    
+    { params } : { params : Promise<{ id: string }> }    
 ) {
     try {
-        const storyId = params.id
-
+        const { id: storyId } = await params
         // Create data directory if it doesn't exist
         const dataDir = path.join(process.cwd(), 'data')
-        if (!fs.existsSync) {
+        if (!fs.existsSync(dataDir)) {
             return NextResponse.json([])
         }
 
-        const commentsFile = path.join(process.cwd(), 'data')
+        const commentsFile = path.join(dataDir, 'comments.json')
         
         // Read existing comments
         let comments = []
@@ -165,6 +173,106 @@ export async function GET(
         console.error("Error fetching comments:", error)
         return NextResponse.json(
             { error: "Internal server error" },
+            { status: 500 }
+        )
+    }
+}
+
+export async function DELETE(
+    req: NextRequest,
+    { params } : { params : Promise<{ id: string }> }
+) {
+    try {
+        const session = await getServerSession(authOptions)
+
+        if (!session?.user?.id) {
+            return NextResponse.json(
+                { error: "Unauthorized" },
+                { status: 401 }
+            )
+        }
+
+        const { id: storyId } = await params
+        const { searchParams } = new URL(req.url)
+        const commentId = searchParams.get('commentId')
+
+        if (!commentId) {
+            return NextResponse.json(
+                { error: "Comment ID is required" },
+                { status: 400 }
+            )
+        }
+
+        // Create data directory if it doesn't exist
+        const dataDir = path.join(process.cwd(), 'data')
+        if (!fs.existsSync(dataDir)) {
+            return NextResponse.json(
+                { error: "No comments found" },
+                { status: 404 }
+            )
+        }
+
+        const commentsFile = path.join(dataDir, 'comments.json')
+        const storiesFile = path.join(dataDir, 'stories.json')
+
+        // Read existing comments
+        let comments = []
+        if (fs.existsSync(commentsFile)) {
+            const commentsData = fs.readFileSync(commentsFile, 'utf-8')
+            try {
+                comments = JSON.parse(commentsData)
+            } catch (e) {
+                comments = []
+            }
+        }
+
+        // Find the comment to delete
+        const commentIndex = comments.findIndex(comment => comment.id === commentId)
+
+        if (commentIndex === -1) {
+            return NextResponse.json(
+                { error: "Comment not found" },
+                { status: 400 }
+            )
+        }
+
+        const comment = comments[commentIndex]
+
+        // Check if the user owns this comment
+        if (comment.authorId !== session.user.id) {
+            return NextResponse.json(
+                { error: "Forbidden - You can only delete your comments" },
+                { status: 403 }
+            )
+        }
+
+        // Remove the comment from the array
+        comments.splice(commentIndex, 1)
+
+        // Save the updated comments back to file
+        if (fs.existsSync(storiesFile)) {
+            const storiesData = fs.readFileSync(storiesFile, 'utf-8')
+            try {
+                const stories = JSON.parse(storiesData)
+                const storyIndex = stories.findIndex(s => s.id === storyId)
+                if (storyIndex !== -1) {
+                    stories[storyIndex]._count = stories[storyIndex]._count || { comments: 0}
+                    stories[storyIndex]._count.comments = comments.filter(c => c.storyId = storyId).length
+                    fs.writeFileSync(storiesFile, JSON.stringify(stories, null, 2))
+                }
+            } catch(e) {
+                console.error("Error updating story comment count:", e)
+            }
+        }
+
+        return NextResponse.json(
+            { message: "Comment deleted successfully" },
+            { status: 200 }
+        )
+    } catch(error) {
+        console.error("Error deleting comment:", error)
+        return NextResponse.json(
+            { message: "Internal server error" },
             { status: 500 }
         )
     }
