@@ -29,6 +29,11 @@
     const [selectedStory, setSelectedStory] = useState<Story | null>(null)
     const router = useRouter()
 
+    // Function to refresh stories (can be called from child components)
+    const refreshStories = () => {
+      fetchPublicStories()
+    }
+
     useEffect(() => {
       fetchPublicStories()
     }, [])
@@ -280,7 +285,7 @@
                 )}
 
                 {/* Comments Section */} 
-                <Comments storyId={selectedStory.id}/>
+                <Comments storyId={selectedStory.id} onCommentChange={refreshStories}/>
 
                 {/* Call to Action */}
                 <div className="border-t pt-6">

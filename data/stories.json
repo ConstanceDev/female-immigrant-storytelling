@@ -1,30 +1,5 @@
 [
   {
-    "id": "1752255498443",
-    "title": "Test",
-    "content": "Test story",
-    "contentType": "text",
-    "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": "",
-    "visibility": "anonymous_public",
-    "selectedUserIds": [],
-    "expiresAt": null,
-    "publishAt": null,
-    "geoRestrictions": [],
-    "searchIndexable": false,
-    "authorId": "118081953351798648892",
-    "createdAt": "2025-07-11T17:38:18.443Z",
-    "updatedAt": "2025-07-11T17:38:18.443Z",
-    "author": {
-      "pseudonym": "Constance",
-      "avatarSeed": "118081953351798648892"
-    },
-    "_count": {
-      "comments": 14
-    }
-  },
-  {
     "id": "1752256700816",
     "title": "Test 2",
     "content": "This is a story for testing ",
@@ -71,7 +46,7 @@
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
-      "comments": 14
+      "comments": 2
     }
   },
   {
@@ -147,6 +122,31 @@
     },
     "_count": {
       "comments": 0
+    }
+  },
+  {
+    "id": "1752856182724",
+    "title": "Test 1",
+    "content": "Test 1",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "createdAt": "2025-07-18T16:29:42.724Z",
+    "updatedAt": "2025-07-18T16:29:42.724Z",
+    "author": {
+      "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 2
     }
   }
 ]
