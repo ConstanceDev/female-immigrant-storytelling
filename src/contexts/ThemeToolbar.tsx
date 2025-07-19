@@ -1,67 +1,124 @@
 "use client"
 
 import { useTheme } from "@/contexts/ThemeContext"
-import { Button, Flex } from "@radix-ui/themes"
+import { Button, Flex, Text } from "@radix-ui/themes"
 import { Sun, Moon, Type, Palette } from "lucide-react"
 
 export default function ThemeToolbar() {
     const { theme, fontSize, colorScheme, setTheme, setFontSize, setColorScheme } = useTheme()
 
-    const cycleFontSize = () => {
-        const sizes = ["small", "medium", "large"] as const
-        const currentIndex = sizes.indexOf(fontSize)
-        const nextIndex = (currentIndex + 1) % sizes.length
-        setFontSize(sizes[nextIndex])
-        
-    }
-
-    const cycleColorScheme = () => {
-        const schemes = ["default", "high-contrast", "warm", "cool"] as const
-        const currentIndex = schemes.indexOf(colorScheme)
-        const nextIndex = (currentIndex + 1) % schemes.length
-        setColorScheme(schemes[nextIndex])
-    }
-
     return (
         <Flex align="center" gap="2">
         {/* Theme Toggle */}
-        <Button
-            variant="ghost"
-            size="2"
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-        >
-            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
-        </Button>
+        <div className="relative group">
+            <Button
+                variant="ghost"
+                size="2"
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            >
+                {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+            </Button>
+            <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[120px]">
+                <Text size="2" className="font-medium block mb-2">Theme</Text>
+                <div className="space-y-1">
+                    <button
+                        onClick={() => setTheme("light")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${theme === "light" ? "bg-gray-100" : ""}`}
+                    >
+                        <Sun size={14} />
+                        Light
+                    </button>
+                    <button
+                        onClick={() => setTheme("dark")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${theme === "dark" ? "bg-gray-100" : ""}`}
+                    >
+                        <Moon size={14} />
+                        Dark
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        {/* Font Size Cycle */}
-        <Button
-            variant="ghost"
-            size="2"
-            onClick={cycleFontSize}
-            title={`Font size: ${fontSize}`}       
-        >
-            <Type size={16} />
-            <span className="text-xs ml-1">
-                {fontSize === "small" ? "S" : fontSize === "large" ? "L" : "M"}
-            </span>
-        </Button>
+        {/* Font Size */}
+        <div className="relative group">
+            <Button
+                variant="ghost"
+                size="2"
+            >
+                <Type size={16} />
+            </Button>
+            <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[120px]">
+                <Text size="2" className="font-medium block mb-2">Font Size</Text>
+                <div className="space-y-1">
+                    <button
+                        onClick={() => setFontSize("small")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${fontSize === "small" ? "bg-gray-100" : ""}`}
+                    >
+                        <span className="text-xs">A</span>
+                        Small
+                    </button>
+                    <button
+                        onClick={() => setFontSize("medium")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${fontSize === "medium" ? "bg-gray-100" : ""}`}
+                    >
+                        <span className="text-sm">A</span>
+                        Medium
+                    </button>
+                    <button
+                        onClick={() => setFontSize("large")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${fontSize === "large" ? "bg-gray-100" : ""}`}
+                    >
+                        <span className="text-base">A</span>
+                        Large
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        {/* Color Scheme Cycle */}
-        <Button
-            variant="ghost"
-            size="2"
-            onClick={cycleColorScheme}
-            title={`Coclr scheme: ${colorScheme}`}       
-        >
-            <Palette size={16} />
-            <span className="text-xs ml-1">
-                {colorScheme === "default" ? "D" :
-                 colorScheme === "high-contrast" ? "H" :
-                 colorScheme === "warm" ? "W" : "C"
-                }
-            </span>
-        </Button>
+        {/* Color Scheme */}
+        <div className="relative group">
+            <Button
+                variant="ghost"
+                size="2"
+            >
+                <Palette size={16} />
+            </Button>
+            <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[180px]">
+                <Text size="2" className="font-medium block mb-2">Color Scheme</Text>
+                <div className="space-y-1">
+                    <button
+                        onClick={() => setColorScheme("default")}
+                        className={`flex items-center gap-3 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${colorScheme === "default" ? "bg-gray-100" : ""}`}
+                    >
+                        <div className="flex gap-1">
+                            <div className="w-3 h-3 rounded bg-purple-500"></div>
+                            <div className="w-3 h-3 rounded bg-gray-100 border"></div>
+                        </div>
+                        Default
+                    </button>
+                    <button
+                        onClick={() => setColorScheme("high-contrast")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${colorScheme === "high-contrast" ? "bg-gray-100" : ""}`}
+                    >
+                        <div className="flex gap-1">
+                            <div className="w-3 h-3 rounded bg-black"></div>
+                            <div className="w-3 h-3 rounded bg-white border border-black"></div>
+                        </div> 
+                        High Contrast
+                    </button>
+                    <button
+                        onClick={() => setColorScheme("warm")}
+                        className={`flex items-center gap-2 w-full px-2 py-1 text-left text-sm rounded hover:bg-gray-100 ${colorScheme === "warm" ? "bg-gray-100" : ""}`}
+                    >
+                        <div className="flex gap-1">
+                            <div className="w-3 h-3 rounded bg-orange-500"></div>
+                            <div className="w-3 h-3 rounded bg-orange-50 border"></div>
+                        </div>
+                        Cool Tones
+                    </button>
+                </div>
+            </div>
+        </div>
         </Flex>
     )
 }
