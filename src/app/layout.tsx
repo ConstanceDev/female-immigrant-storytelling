@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/providers/session-provider";
 import SafetyButton from "@/components/safety/SafetyButton";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 
@@ -31,12 +32,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          <Theme>
-            {children}
-            <SafetyButton />
-          </Theme>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <Theme>
+              {children}
+              <SafetyButton />
+            </Theme>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Text, Flex, Heading, Avatar, Badge } from "@radix-ui/themes";
 import { createAvatar  } from '@dicebear/core';
 import { initials } from '@dicebear/collection'
+import ThemeToolbar from "@/contexts/ThemeToolbar";
 
 interface Story {
     id: string
@@ -130,6 +131,7 @@ export default function Dashboard() {
             <Flex justify="between" align="center" className="h-16">
               <Heading size="5">Your Stories</Heading>
               <Flex align="center" gap="3">
+                <ThemeToolbar />
                 <Button 
                   variant="ghost" 
                   onClick={() => router.push("/profile")}
@@ -227,7 +229,7 @@ export default function Dashboard() {
             ) : stories.length === 0 ? (
               <Card className="p-6">
                 <Text className="text-gray-500 text-center">
-                  You haven't created any stories yet. Start sharing your journey!
+                  You haven&apos;t created any stories yet. Start sharing your journey!
                 </Text>
               </Card>
             ) : (

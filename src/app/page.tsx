@@ -1,8 +1,9 @@
   "use client"
-import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Button, Text, Flex, Heading, Card } from "@radix-ui/themes"
+import ThemeToolbar from "@/contexts/ThemeToolbar";
+
 
 export default function Home() {
     const router = useRouter()
@@ -17,8 +18,17 @@ export default function Home() {
 
     return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+        {/* Header */}
+        <header className="w-full">
+          <div className="max-w-4xl mx-auto px-4 py-4">
+            <Flex justify="end">
+              <ThemeToolbar />
+            </Flex>
+          </div>
+        </header>
+        
         {/* Hero Section */}
-        <main className="max-w-4xl mx-auto px-4 py-16 text-center">
+        <main className="max-w-4xl mx-auto px-4 py-8 text-center">
           <Flex direction="column" gap="8" align="center">
             <div className="space-y-4">
               <Heading size="9" className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
