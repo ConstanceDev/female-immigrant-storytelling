@@ -6,6 +6,8 @@ import { useEffect, useState } from "react"
 import { Button, Card, Text, Flex, Heading, Switch } from "@radix-ui/themes"
 import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
+import ThemeSettings from "@/components/settings/ThemeSettings"
+import { Car } from "lucide-react"
 
 export default function Profile() {
     const { data: session, status } = useSession()
@@ -103,6 +105,11 @@ return (
                 Change Avatar
               </Button>
             </Flex>
+          </Card>
+
+          {/* Theme Settings */}
+          <Card className="p-6">
+            <ThemeSettings />
           </Card>
 
           {/* Privacy Settings */}
