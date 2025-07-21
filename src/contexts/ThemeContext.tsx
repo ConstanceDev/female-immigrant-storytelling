@@ -36,21 +36,27 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         // Apply theme to document
         document.documentElement.classList.remove("light", "dark")
+        document.body.classList.remove("light", "dark")
         document.documentElement.classList.add(theme)
+        document.body.classList.add(theme)
         localStorage.setItem("theme", theme)
     }, [theme])
 
     useEffect(() => {
         // Apply font size to document
         document.documentElement.classList.remove("text-sm", "text-base", "text-lg")
+        document.body.classList.remove("text-sm", "text-base", "text-lg")
         const fontSizeClass = fontSize === "small" ? "text-sm" : fontSize === "large" ? "text-lg" : "text-base"
         document.documentElement.classList.add(fontSizeClass)
+        document.body.classList.add(fontSizeClass)
         localStorage.setItem("fontSize", fontSize)
     }, [fontSize])
 
     useEffect(() => {
         // Apply color scheme to document
         document.documentElement.classList.remove("scheme-default", "scheme-high-contrast", "scheme-warm", "scheme-cool")
+        document.body.classList.remove("scheme-default", "scheme-high-contrast", "scheme-warm", "scheme-cool")
+        document.body.classList.add(`scheme-${colorScheme}`)
         document.documentElement.classList.add(`scheme-${colorScheme}`)
         localStorage.setItem("colorScheme", colorScheme)
     }, [colorScheme])
