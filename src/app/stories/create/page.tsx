@@ -1,23 +1,16 @@
 "use client"
 
-{/* 
-  This story creation page includes:
-  - Authentication check and redirect
-  - Comprehensive form with title, content, tags, and content warnings
-  - Privacy settings including visibility options, auto-delete, scheduling
-  - Search engine indexing control
-  - Responsive design with proper form validation
-  - API integration for story submission
-  */}
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
+import PersonaSelector, { Persona } from "@/components/persona/PersonaSelector"
 
 export default function CreateStory() {
     const { data: session, status } = useSession()
     const router = useRouter()
     const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
 
     const [formData, setFormData] = useState({
         title: "",
@@ -50,6 +43,7 @@ export default function CreateStory() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     ...formData,
+                    personaId: selectedPersona?.id,
                     tags: formData.tags.split(",").map(tag => tag.trim()).filter(Boolean),
                     contentWarnins: formData.contentWarnings.split(",").map(warning => warning.trim()).filter(Boolean),
                     expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : null,
@@ -90,6 +84,16 @@ export default function CreateStory() {
         {/* Main Content */}
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <form onSubmit={handleSubmit} className="space-y-6">
+
+            {/* Persona Selection */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <PersonaSelector
+                selectedPersonaId={selectedPersona?.id}
+                onPersonaSelect={(personId, persona) => setSelectedPersona(persona)}
+                onCreatePersona={() => router.push('/profile#personas')}
+              />
+            </div>
+
             {/* Story Title */}
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">

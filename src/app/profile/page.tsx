@@ -7,7 +7,7 @@ import { Button, Card, Text, Flex, Heading, Switch } from "@radix-ui/themes"
 import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
 import ThemeSettings from "@/components/settings/ThemeSettings"
-import { Car } from "lucide-react"
+import PersonaManager from "@/components/persona/PersonaManager"
 
 export default function Profile() {
     const { data: session, status } = useSession()
@@ -105,6 +105,11 @@ return (
                 Change Avatar
               </Button>
             </Flex>
+          </Card>
+
+          {/* Persona Management */} 
+          <Card className="p-6">
+            <PersonaManager />
           </Card>
 
           {/* Theme Settings */}
