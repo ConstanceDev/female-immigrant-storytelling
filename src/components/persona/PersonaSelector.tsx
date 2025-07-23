@@ -69,7 +69,7 @@ export default function PersonaSelector({
         return avatar.toDataUri()
     }
 
-    const selectedPersona = persona.find(p => p.id === selectedPersonaId)
+    const selectedPersona = personas.find(p => p.id === selectedPersonaId)
 
     if (loading) {
         return <Text size="2">Loading personas...</Text>
@@ -100,7 +100,7 @@ export default function PersonaSelector({
                                 <Flex align="center" gap="2">
                                     <Avatar
                                         src={getPersonaAvatar(persona)}
-                                        fallback={persona.pesudonym[0]}
+                                        fallback={persona.pesudonym?.[0] || "P"}
                                         size="1"
                                     />
                                     <Text size="2">
@@ -129,7 +129,7 @@ export default function PersonaSelector({
                 <Flex align="center" gap="2" className="p-2 bg-gray-50 dark:bg-gray-800 rounded">
                     <Avatar 
                         src={getPersonaAvatar(selectedPersona)}
-                        fallback={selectedPersona.pesudonym[0]}
+                        fallback={selectedPersona.pesudonym?.[0] || "P"}
                         size="2"
                     />
                     <Flex direction="column">

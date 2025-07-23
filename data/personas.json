@@ -6,6 +6,15 @@
     "avatarSeed": "118081953351798648892",
     "isDefault": true,
     "createdAt": "2025-07-22T23:08:49.338Z",
-    "updatedAt": "2025-07-22T23:08:49.338Z"
+    "updatedAt": "2025-07-23T14:08:31.259Z"
+  },
+  {
+    "id": "persona_1753281717065_l2t9mm2qdj",
+    "userId": "118081953351798648892",
+    "pseudonym": "Test",
+    "avatarSeed": "118081953351798648892_1753281709959",
+    "isDefault": false,
+    "createdAt": "2025-07-23T14:41:57.065Z",
+    "updatedAt": "2025-07-23T14:41:57.065Z"
   }
 ]

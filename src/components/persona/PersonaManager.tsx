@@ -54,7 +54,7 @@ export default function PersonaManager() {
         }
 
         try {
-            const response = await fetch('/api/persona', {
+            const response = await fetch(`/api/personas`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ export default function PersonaManager() {
               <Flex align="center" gap="3">
                 <Avatar
                   src={getPersonaAvatar(persona)}
-                  fallback={persona.pseudonym[0]}
+                  fallback={persona.pseudonym?.[0] || "P"}
                   size="3"
                 />
                 <div>

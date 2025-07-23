@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
-import { getPersonasById, updatePersona, deletePersona } from "@/lib/personas"
+import { getPersonaById, updatePersona, deletePersona } from "@/lib/personas"
 
 // GET - Get a specific persona
 export async function GET(
@@ -16,7 +16,7 @@ export async function GET(
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const persona = getPersonasById(id)
+        const persona = getPersonaById(id)
 
         if (!persona) {
             return NextResponse.json({ error: 'Persona not found' }, { status: 404 })
@@ -47,7 +47,7 @@ export async function PUT(
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const persona = getPersonasById(id)
+        const persona = getPersonaById(id)
 
         if (!persona) {
             return NextResponse.json({ error: 'Persona not found' }, { status: 404 })
@@ -99,7 +99,7 @@ export async function DELETE(
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const persona = getPersonasById(id)
+        const persona = getPersonaById(id)
 
         if (!persona) {
             return NextResponse.json({ error: 'Persona not found' }, { status: 404 })
