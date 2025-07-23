@@ -68,11 +68,8 @@ export interface Persona {
       return defaultPersona
   }
 
-    export function createPersona(userId: string, pseudonym: string, avatarSeed?: string): Persona {
-    console.log('createPersona called with:', { userId, pseudonym, avatarSeed }) 
-    
+    export function createPersona(userId: string, pseudonym: string, avatarSeed?: string): Persona {    
     const personas = getPersonas()
-    console.log('Current personas count:', personas.length)
 
     const finalAvatarSeed = avatarSeed || `${userId}_${Date.now()}`
 
@@ -86,14 +83,10 @@ export interface Persona {
         updatedAt: new Date().toISOString()
       }
 
-      console.log('New persona object:', newPersona)
-
       personas.push(newPersona)
-      console.log('Personas array after push:', personas.length)
 
       try {
         fs.writeFileSync(personasFile, JSON.stringify(personas, null, 2))
-        console.log('Successfully wrote personas file')
       } catch(writeError) {
         console.error('Error writing personas file:', writeError)
         throw writeError
