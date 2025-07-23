@@ -5,12 +5,14 @@ import { useSession } from "next-auth/react"
 import { Button, Card, Text, Flex, Heading, Avatar, TextArea } from "@radix-ui/themes"
 import { createAvatar } from '@dicebear/core'
 import { initials } from '@dicebear/collection'
+import PersonaSelector, { Persona } from "../persona/PersonaSelector"
 
 interface Comment {
     id: string,
     storyId: string,
     content: string,
     authorId: string
+    personaId?: string,
     createdAt: string,
     author: {
         pseudonym: string,
@@ -28,6 +30,8 @@ export default function Comments({ storyId, onCommentChange }: CommentsProps) {
     const [comments, setComments] = useState<Comment[]>([])
     const [newComment, setNewComment] = useState('')
     const [loading, setLoading] = useState(true)
+    const [selectedPersonaId, setSelectedPersonaId] = useState<string>('')
+    const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
     const [submitting, setSubmitting] = useState(false)
     const [deletingCommentId, setDeletingCommentId] = useState<string | null>(null)
 
@@ -60,7 +64,8 @@ const submitComment = async () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: newComment.trim()
+                content: newComment.trim(),
+                personaId: selectedPersonaId
             })
         })
 
@@ -89,6 +94,10 @@ const submitComment = async () => {
         setSubmitting(false)
     }
 }
+    const handlePersonaSelect = (personaId: string, persona: Persona) => {
+      setSelectedPersonaId(personaId)
+      setSelectedPersona(persona)
+    }
 
     const generateAvatar = (seed: string) => {
         return createAvatar(initials, {
@@ -151,7 +160,12 @@ const submitComment = async () => {
       {/* Comment Form */}
       {session ? (
         <Card className="p-4 mb-6">
-          <Flex direction="column" gap="3">
+          <Flex direction="column" gap="4">
+            <PersonaSelector
+              selectedPersonaId={selectedPersonaId}
+              onPersonaSelect={handlePersonaSelect}
+              showCreateButton={false}
+            />
             <TextArea
               placeholder="Share your thoughts..."
               value={newComment}

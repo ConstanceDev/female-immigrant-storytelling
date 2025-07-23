@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
+import { getPersonaById, getUserDefaultPersona, createDefaultPersona } from "@/lib/personas"
 import fs from 'fs'
 import path from 'path'
 
@@ -17,7 +18,7 @@ import path from 'path'
 
       const { id: storyId } = await params
       const body = await req.json()
-      const { content } = body
+      const { content, personaId } = body
 
       // Validate required fields
       if (!content || content.trim() === '') {
@@ -76,21 +77,24 @@ import path from 'path'
         return NextResponse.json({ error: "Story not found" }, { status: 404 })
       }
 
-      // Find the author
-      let author = users.find(u => u.id === session.user.id)
-      if (!author) {
-        // Create a new user entry if not found
-        author = {
-          id: session.user.id,
-          email: session.user.email,
-          name: session.user.name,
-          pseudonym: session.user.name || `Anonymous_${Date.now()}`,
-          avatarSeed: session.user.id,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+      // Get persona for the comment
+      let persona
+      if (personaId) {
+        persona = getPersonaById(personaId)
+        if (!persona || persona.userId !== session.user.id) {
+          return NextResponse.json({ error: "Invalid persona" }, { status: 400 })
         }
-        users.push(author)
-        fs.writeFileSync(usersFile, JSON.stringify(users, null, 2))
+      } else {
+        // Use default persona if none specified
+        persona = getPersonaById(session.user.id)
+        if (!persona) {
+          // Create default persona if it doesn't exist
+          persona = createDefaultPersona(
+            session.user.id,
+            session.user.name || 'User',
+            session.user.id
+          )
+        }
       }
 
       // Create the comment
@@ -102,11 +106,12 @@ import path from 'path'
         storyId,
         content: content.trim(),
         authorId: session.user.id,
+        personaId: persona.id,
         createdAt: timestamp,
         updatedAt: timestamp,
         author: {
-          pseudonym: author.pseudonym,
-          avatarSeed: author.avatarSeed,
+          pseudonym: persona.pseudonym,
+          avatarSeed: persona.avatarSeed,
         }
       }
 
