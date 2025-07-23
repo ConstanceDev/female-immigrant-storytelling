@@ -70,7 +70,7 @@ export async function PUT(
         }
 
         const updates: any = {}
-        if (pseudonym) updates.pesudonym = pseudonym.trim()
+        if (pseudonym) updates.pseudonym = pseudonym.trim()
         if (avatarSeed) updates.avatarSeed = avatarSeed
 
         const updatedPersona = updatePersona(id, updates)

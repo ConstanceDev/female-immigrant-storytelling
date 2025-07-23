@@ -84,13 +84,7 @@ export interface Persona {
       }
 
       personas.push(newPersona)
-
-      try {
-        fs.writeFileSync(personasFile, JSON.stringify(personas, null, 2))
-      } catch(writeError) {
-        console.error('Error writing personas file:', writeError)
-        throw writeError
-      }
+      fs.writeFileSync(personasFile, JSON.stringify(personas, null, 2))
 
       return newPersona
   }

@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
         if (personas.length === 0) {
             const defaultPersona = createDefaultPersona(
                 session.user.id,
-                session.user.pesudonym || session.user.name || 'User',
+                session.user.pseudonym || session.user.name || 'User',
                 session.user.avatarSeed || session.user.id
             )
             return NextResponse.json([defaultPersona])

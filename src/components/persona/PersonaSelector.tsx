@@ -10,7 +10,7 @@ import { initials } from "@dicebear/collection"
 export interface Persona {
     id: string
     userId: string 
-    pesudonym: string
+    pseudonym: string
     avatarSeed: string
     isDefault: boolean
     createdAt: string
@@ -100,11 +100,11 @@ export default function PersonaSelector({
                                 <Flex align="center" gap="2">
                                     <Avatar
                                         src={getPersonaAvatar(persona)}
-                                        fallback={persona.pesudonym?.[0] || "P"}
+                                        fallback={persona.pseudonym || "P"}
                                         size="1"
                                     />
-                                    <Text size="2">
-                                        {persona.pesudonym}
+                                    <Text size="2" style={{ color: 'var(--gray-12)' }}>
+                                        {persona.pseudonym}
                                         {persona.isDefault && " (Default)"}
                                     </Text>
                                 </Flex>
@@ -129,12 +129,12 @@ export default function PersonaSelector({
                 <Flex align="center" gap="2" className="p-2 bg-gray-50 dark:bg-gray-800 rounded">
                     <Avatar 
                         src={getPersonaAvatar(selectedPersona)}
-                        fallback={selectedPersona.pesudonym?.[0] || "P"}
+                        fallback={selectedPersona.pseudonym || "P"}
                         size="2"
                     />
                     <Flex direction="column">
                         <Text size="2" weight="medium">
-                            {selectedPersona.pesudonym}
+                            {selectedPersona.pseudonym}
                         </Text>
                         <Text size="1" color="gray">
                             {selectedPersona.isDefault ? "Your default identity" : "Persona"}

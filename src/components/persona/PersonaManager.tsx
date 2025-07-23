@@ -10,7 +10,7 @@ import { initials } from "@dicebear/collection"
 interface Persona {
     id: string
     userId: string 
-    pesudonym: string
+    pseudonym: string
     avatarSeed: string
     isDefault: boolean
     createdAt: string
@@ -143,7 +143,7 @@ export default function PersonaManager() {
 
     const openEditDialog = (persona: Persona) => {
         setEditingPersona(persona)
-        setNewPseudonym(persona.pesudonym)
+        setNewPseudonym(persona.pseudonym)
         setError("")
         setShowEditDialog(true)
     }
