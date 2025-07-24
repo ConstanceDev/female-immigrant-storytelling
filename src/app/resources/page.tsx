@@ -322,8 +322,33 @@ export default function Resources() {
           </div>
         )}
 
+        {/* Platform Support Section */}
+        <div className="mt-12">
+          <Card className="p-6 bg-purple-50 border-purple-200">
+            <Flex align="start" gap="3">
+              <span className="text-2xl">💬</span>
+              <div className="flex-1">
+                <Heading size="4" className="mb-2">Need Help with This Platform?</Heading>
+                <Text  size="2" className="mb-4" style={{ color: 'rgb(75 85 99)' }}>
+                  Having trouble with the website, need to report an issue, or want to share feedback?
+                  Our support team is here to help make your experience better.
+                </Text>
+                <div>
+                <Button
+                  onClick={() => router.push("/support")}
+                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                >
+                  Contact Support & Feedback
+                </Button>
+                </div>
+
+              </div>
+            </Flex>
+          </Card>
+        </div>
+
         {/* Privacy Notice */}
-        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
           <Flex align="start" gap="3">
             <span className="text-2xl">🔒</span>
             <div>

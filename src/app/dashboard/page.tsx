@@ -7,6 +7,7 @@
   import { createAvatar } from '@dicebear/core';
   import { initials } from '@dicebear/collection'
   import ThemeToolbar from "@/contexts/ThemeToolbar";
+import { Car } from "lucide-react";
 
   interface Story {
       id: string
@@ -166,7 +167,7 @@
 
           {/* Main Content */}
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 max-w-none">
               {/* Create New Story Card */}
               <Card 
                 className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
@@ -223,6 +224,25 @@
                   </Button>
                 </Flex>
               </Card>
+
+              {/* Support & Feedback Card */}
+            <Card
+              className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => router.push("/support")}
+            >
+              <Flex direction="column" gap="4" align="center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                  <Text size="6">💬</Text>
+                </div>
+                <Heading size="4">Support & Feedback</Heading>
+                <Text size="2" className="text-center text-gray-600">
+                  Get help or share feedback about the platform
+                </Text>
+                <Button size="2" variant="outline" className="mt-2">
+                  Contact Us
+                </Button>
+              </Flex>
+            </Card>
             </div>
 
             {/* Your Stories Section */}
