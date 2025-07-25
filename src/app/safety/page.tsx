@@ -162,6 +162,8 @@ export default function Safety() {
               <Text size="2">
                 Free, confidential support available 24/7
               </Text>
+              <div></div>
+              <div />
               <Button
                 onClick={() => handleEmergencyCall("08082000247")}
                 style={{ backgroundColor: '#7c3aed', color: 'white' }}
