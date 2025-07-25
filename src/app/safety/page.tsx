@@ -118,7 +118,7 @@ export default function Safety() {
             <Text size="6">🚨</Text>
             <div className="flex-1">
               <Text className="text-red-800 font-medium">
-                Emergency: If you&apos;re in immediate danger, call 999
+                Emergency: If you&apos;re in immediate danger, call 999  
               </Text>
               <Text size="2" className="text-red-700">
                 For silent emergency help, text 55999

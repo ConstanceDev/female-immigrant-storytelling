@@ -174,5 +174,35 @@
     "_count": {
       "comments": 0
     }
+  },
+  {
+    "id": "1753469213573",
+    "title": "Test Tag",
+    "content": "Test post tag",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [
+      "immigration",
+      "friendship",
+      "family"
+    ],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753281717065_l2t9mm2qdj",
+    "createdAt": "2025-07-25T18:46:53.573Z",
+    "updatedAt": "2025-07-25T18:46:53.573Z",
+    "author": {
+      "pseudonym": "Test",
+      "avatarSeed": "118081953351798648892_1753281709959"
+    },
+    "_count": {
+      "comments": 0
+    }
   }
 ]

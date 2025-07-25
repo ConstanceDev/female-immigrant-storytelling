@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import PersonaSelector, { Persona } from "@/components/persona/PersonaSelector"
+import TagInput from "@/components/stories/TagInput"
 
 export default function CreateStory() {
     const { data: session, status } = useSession()
@@ -16,7 +17,7 @@ export default function CreateStory() {
         title: "",
         content: "",
         contentType: "text",
-        tags: "",
+        tags: [] as string[],
         contentWarnings: "",
         visibility: "private",
         expiresAt: "",
@@ -44,7 +45,7 @@ export default function CreateStory() {
                 body: JSON.stringify({
                     ...formData,
                     personaId: selectedPersona?.id,
-                    tags: formData.tags.split(",").map(tag => tag.trim()).filter(Boolean),
+                    tags: formData.tags,
                     contentWarnins: formData.contentWarnings.split(",").map(warning => warning.trim()).filter(Boolean),
                     expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : null,
                     publishAt: formData.publishAt ? new Date(formData.publishAt).toISOString() : null,
@@ -129,17 +130,17 @@ mb-2">
 
             {/* Tags */}
             <div>
-              <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Tags (optional)
               </label>
-              <input
-                type="text"
-                id="tags"
-                value={formData.tags}
-                onChange={(e) => setFormData({...formData, tags: e.target.value})}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="immigration, work, family, education, healthcare (separate with commas)"
+              <TagInput
+                tags={formData.tags}
+                onChange={(tags) => setFormData({...formData, tags})}
+                placeholder="Add tags to help others discover your story..."
               />
+              <p className="text-sm text-gray-500 mt-1">
+                Tags help categorize your story and make it easier for others to find similar experiences.
+              </p>
             </div>
 
             {/* Content Warnings */}
