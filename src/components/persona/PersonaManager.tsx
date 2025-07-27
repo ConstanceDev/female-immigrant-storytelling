@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { Card, Text, Flex, Heading, Button, Dialog, TextField, Avatar } from "@radix-ui/themes"
-import { Plus, Edit, Trash2, User } from "lucide-react"
+import { Plus, Edit, Trash2 } from "lucide-react"
 import { createAvatar } from "@dicebear/core"
 import { initials } from "@dicebear/collection"
 
@@ -27,7 +27,7 @@ export default function PersonaManager() {
     const [newPseudonym, setNewPseudonym] = useState("")
     const [error, setError] = useState("")
 
- useEffect(() => {
+  useEffect(() => {
         if (session?.user?.id) {
             fetchPersonas()
         }

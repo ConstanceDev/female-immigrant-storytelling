@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
+import { getPersonaById, getUserDefaultPersona, createDefaultPersona } from "@/lib/personas";
 import fs from 'fs'
 import path from 'path'
 
@@ -117,6 +118,143 @@ export async function GET(
         console.error("Error fetching story:", error)
         return NextResponse.json(
             { error: "Interna; server error" },
+            { status: 500 }
+        )
+    }
+}
+
+export async function PUT(
+    req: NextRequest,
+    { params }: { params: { id: string } }    
+) {
+    try {
+        const session = await getServerSession(authOptions)
+
+        if (!session?.user?.id) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
+
+    const storyId = params.id
+    const body = await req.json
+    const {
+        title,
+        content,
+        contentType,
+        personaId,
+        tags = [],
+        contentWarnings = [],
+        visibility = "private",
+        trustedCircleId,
+        selectedUserIds = [],
+        expiresAt,
+        publishAt,
+        searchIndexable = false
+    } = body
+
+    // Validate required field
+    if (!title || !content) {
+        return NextResponse.json(
+            { error: "Title and content are required" },
+            { status: 400 }
+        )
+    }
+
+    // Ensure contentWarnings is always an array and filter out empty strings
+    const processedContentWarnings = Array.isArray(contentWarnings)
+        ? contentWarnings.filter(w => w && w.trim() !== '')
+        : (contentWarnings && contentWarnings.trim() !== '' ? [contentWarnings] : [] )
+
+        // Create data directory if it doesn't exist
+        const dataDir = path.join(process.cwd(), 'data')
+        if (!fs.existsSync(dataDir)) {
+            return NextResponse.json({ error: "No stories found" }, { status: 404 })
+        }
+
+        const storiesFile = path.join(dataDir, 'stories.json')
+
+        // Read existing stories
+        let stories = []
+        if (fs.existsSync(storiesFile)) {
+            const storiesData = fs.readFileSync(storiesFile, 'utf-8')
+            try {
+                stories = JSON.parse(storiesData)
+            } catch(e) {
+                return NextResponse.json({ error: "Error reading stories" }, { status: 500 })
+            }
+        }
+
+        // Find the story to update
+        const storyIndex = stories.findIndex(story => story.id === storyId)
+
+        if (storyIndex === -1) {
+            return NextResponse.json({ error: "Story not found" }, { status: 404 })
+        }
+
+        const existingStory = stories[storyIndex]
+
+        // Check if the user owns this story
+        if (existingStory.authorId !== session.user.id) {
+            return NextResponse.json({ error: "Forbidden - You can only edit your own stories" }, { status: 403 })
+        }
+
+        // Get persona for the story
+        let persona
+        if (personaId) {
+            persona = getPersonaById(personaId)
+            if (!persona || persona.userId !== session.user.id) {
+                return NextResponse.json({ error: "Invalid persona" }, { status: 400 })
+            }
+        } else {
+            // Use existing persona or default persona if none specified
+            if (existingStory.personaId) {
+                persona = getPersonaById(existingStory.personaId)
+            }
+            if (!persona) {
+                persona = getUserDefaultPersona(session.user.id)
+                if (!persona) {
+                    // Create default persona if it doesn't exist
+                    persona = createDefaultPersona(
+                        session.user.id,
+                        session.user.name || 'User',
+                        session.user.id
+                    )
+                }
+            }
+        }
+
+        // Update the story
+        const updatedStory = {
+            ...existingStory,
+            title,
+            content,
+            contentType,
+            tags,
+            contentWarnings: processedContentWarnings,
+            visibility,
+            trustedCircleId,
+            selectedUserIds,
+            expiresAt: expiresAt ? new Date(expiresAt).toISOString() : null,
+            publishAt: publishAt ? new Date(publishAt).toISOString() : null,
+            geoRestrictions,
+            searchIndexable: visibility === "anonymous_public" ? searchIndexable : false,
+            personaId: persona.id,
+            updatedAt: new Date().toISOString(),
+            author: {
+                pseudonym: persona.pseudonym,
+                avatarSeed: persona.avatarSeed
+            }
+        }
+
+        stories[storyIndex] = updatedStory
+
+        // Save stories back to file
+        fs.writeFileSync(storiesFile, JSON.stringify(stories, null, 2))
+
+        return NextResponse.json(updatedStory)
+    } catch (error) {
+        console.error("Error updatng story:", error)
+        return NextResponse.json(
+            { error: "Internal server error" },
             { status: 500 }
         )
     }
