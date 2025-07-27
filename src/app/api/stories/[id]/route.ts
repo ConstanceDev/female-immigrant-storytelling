@@ -7,7 +7,7 @@ import path from 'path'
 
 export async function DELETE(
     req: NextRequest,
-    { params } : { params : { id: string } } 
+    { params } : { params : Promise<{ id: string }> } 
 ) {
     try {
         const session = await getServerSession(authOptions)
@@ -16,7 +16,8 @@ export async function DELETE(
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
         }
 
-        const storyId = params.id
+        const resolvedParams = await params
+        const storyId = resolvedParams.id
 
         // Create data directory if it doesn't exist
         const dataDir = path.join(process.cwd(), 'data')
@@ -48,7 +49,7 @@ export async function DELETE(
 
         // Check if the user owns this story
         if (story.authorId !== session.user.id) {
-            return NextResponse.json({ error: "Forbidden - You can onlu delete your own stories" }, { status: 403 })
+            return NextResponse.json({ error: "Forbidden - You can only delete your own stories" }, { status: 403 })
         }
 
         // Remove the story from the array
@@ -69,11 +70,12 @@ export async function DELETE(
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         const session = await getServerSession(authOptions)
-        const storyId = params.id
+        const resolvedParams = await params
+        const storyId = resolvedParams.id
 
         // Create data directory if it doesn't exist
         const dataDir = path.join(process.cwd(), 'data')
@@ -117,7 +119,7 @@ export async function GET(
     } catch(error) {
         console.error("Error fetching story:", error)
         return NextResponse.json(
-            { error: "Interna; server error" },
+            { error: "Internal server error" },
             { status: 500 }
         )
     }
@@ -125,7 +127,7 @@ export async function GET(
 
 export async function PUT(
     req: NextRequest,
-    { params }: { params: { id: string } }    
+    { params }: { params: Promise<{ id: string }> }    
 ) {
     try {
         const session = await getServerSession(authOptions)
@@ -134,8 +136,9 @@ export async function PUT(
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
         }
 
-    const storyId = params.id
-    const body = await req.json
+    const resolvedParams = await params
+    const storyId = resolvedParams.id
+    const body = await req.json()
     const {
         title,
         content,
@@ -235,7 +238,6 @@ export async function PUT(
             selectedUserIds,
             expiresAt: expiresAt ? new Date(expiresAt).toISOString() : null,
             publishAt: publishAt ? new Date(publishAt).toISOString() : null,
-            geoRestrictions,
             searchIndexable: visibility === "anonymous_public" ? searchIndexable : false,
             personaId: persona.id,
             updatedAt: new Date().toISOString(),
@@ -252,7 +254,7 @@ export async function PUT(
 
         return NextResponse.json(updatedStory)
     } catch (error) {
-        console.error("Error updatng story:", error)
+        console.error("Error updating story:", error)
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }
