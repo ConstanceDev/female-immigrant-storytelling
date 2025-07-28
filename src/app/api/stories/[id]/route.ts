@@ -151,7 +151,8 @@ export async function PUT(
         selectedUserIds = [],
         expiresAt,
         publishAt,
-        searchIndexable = false
+        searchIndexable = false,
+        mediaFiles = []
     } = body
 
     // Validate required field
@@ -239,6 +240,7 @@ export async function PUT(
             expiresAt: expiresAt ? new Date(expiresAt).toISOString() : null,
             publishAt: publishAt ? new Date(publishAt).toISOString() : null,
             searchIndexable: visibility === "anonymous_public" ? searchIndexable : false,
+            mediaFiles: Array.isArray(mediaFiles) ? mediaFiles : [],
             personaId: persona.id,
             updatedAt: new Date().toISOString(),
             author: {

@@ -6,6 +6,7 @@
   import { initials } from '@dicebear/collection'
   import ContentWarning from "@/components/safety/ContentWarning"
   import Comments from "@/components/stories/Comments"
+  import MediaViewer from "@/components/stories/MediaViewer"
 
   interface Story {
     id: string
@@ -14,6 +15,7 @@
     tags: string[]
     contentWarnings: string[] | string
     createdAt: string
+    mediaFiles?: string[]
     author: {
       pseudonym: string
       avatarSeed: string
@@ -301,6 +303,18 @@
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {truncateContent(story.content)}
               </p>
+
+              {/* Media Files Preview */}
+              {story.mediaFiles && story.mediaFiles.length > 0 && (
+              <div  className="mt-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Media</h4>
+                <MediaViewer
+                  mediaFiles={story.mediaFiles}
+                  showDownload={true}
+                  className="space-y-4"
+                />
+              </div>
+              )}
 
               {/* Tags */}
               {story.tags && story.tags.length > 0 && (

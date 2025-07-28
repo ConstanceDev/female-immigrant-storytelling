@@ -7,7 +7,7 @@
   import { createAvatar } from '@dicebear/core';
   import { initials } from '@dicebear/collection'
   import ThemeToolbar from "@/contexts/ThemeToolbar";
-import { Car } from "lucide-react";
+  import MediaViewer from "@/components/stories/MediaViewer";
 
   interface Story {
       id: string
@@ -19,6 +19,7 @@ import { Car } from "lucide-react";
       createdAt: string
       updatedAt: string
       personaId: string
+      mediaFiles?: string[]
       author: {
           pseudonym: string
           avatarSeed: string
@@ -295,6 +296,22 @@ import { Car } from "lucide-react";
                         <Text size="2" className="text-gray-600 line-clamp-3">
                           {truncateContent(story.content)}
                         </Text>
+
+                        {/* Media Files Preview */}
+                        {story.mediaFiles && story.mediaFiles.length > 0 && (
+                          <div  className="mt-2">
+                            <MediaViewer
+                              mediaFiles={story.mediaFiles.slice(0, 2)}
+                              showDownload={false}
+                              className="space-y-2"
+                            />
+                            {story.mediaFiles.length > 2 && (
+                              <Text size="1" className="text-gray-400 mt-1">
+                                +{story.mediaFiles.length - 2} more files
+                              </Text>
+                            )}
+                          </div>
+                        )}
 
                         {/* Tags */}
                         {story.tags && story.tags.length > 0 && (

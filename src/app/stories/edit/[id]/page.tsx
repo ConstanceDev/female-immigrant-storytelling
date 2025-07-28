@@ -5,7 +5,17 @@ import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import PersonaSelector, { Persona } from "@/components/persona/PersonaSelector"
 import TagInput from "@/components/stories/TagInput"
+import FileUpload from "@/components/stories/FileUpload"
+import MediaViewer from "@/components/stories/MediaViewer"
 
+interface UploadedFile {
+    id: string
+    name: string
+    size: number
+    type: string
+    url?: string
+    file: File
+}
 interface Story {
     id: string
     title: string
@@ -18,6 +28,7 @@ interface Story {
     publishAt: string | null
     searchIndexable: boolean
     personaId: string
+    mediaFiles?: string[]
     author: {
         pseudonym: string
         avatarSeed: string
@@ -32,6 +43,7 @@ export default function EditStory({ params } : { params: Promise<{ id: string }>
     const [loading, setLoading] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
     const [formData, setFormData] = useState({
         title: "",
         content: "",
@@ -95,6 +107,36 @@ export default function EditStory({ params } : { params: Promise<{ id: string }>
         setIsSubmitting(true)
 
         try {
+            let newFileIds: string[] = []
+
+            // Upload new files if any
+            if (uploadedFiles.length > 0) {
+                const fileFormData = new FormData()
+                uploadedFiles.forEach(uploadedFile => {
+                    fileFormData.append('files', uploadedFile.file)
+                })
+
+                const fileUploadResponse = await fetch("/api/files/upload", {
+                    method: "POST",
+                    body: fileFormData
+                })
+
+                if (fileUploadResponse.ok) {
+                    const uploadResult = await fileUploadResponse.json()
+                    newFileIds = uploadResult.uploadedFiles?.map((file: any) => file.id || [])
+
+                    if (uploadResult.errors && uploadResult.errors.length > 0) {
+                        alert("Some files failed to upload:\n" + uploadResult.errors.join("\n"))
+                    }
+                } else {
+                    throw new Error("File upload failed")
+                }
+            }
+
+            // Combine existing media files with new ones
+            const existingMediaFiles = story?.mediaFiles || []
+            const allMediaFiles = [...existingMediaFiles, ...newFileIds]
+
             const response = await fetch(`/api/stories/${resolvedParams.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
@@ -213,6 +255,40 @@ export default function EditStory({ params } : { params: Promise<{ id: string }>
                 placeholder="Share your journey, experiences, challenges, or victories..."
                 />
             </div>
+
+             {/* Current Media Files */}
+             {story?.mediaFiles && story.mediaFiles.length > 0 && (
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Current Media Files
+                    </label>
+                    <MediaViewer
+                        mediaFiles={story.mediaFiles}
+                        showDownload={true}
+                        className="space-y-4"
+                    />
+                    <p className="text-sm text-gray-500 mt-1">
+                        These files are currently attached to your story.
+                    </p>
+                </div>
+             )}
+
+             {/* Add New Media Files */}
+             <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Add New Media Files (optional)
+                </label>
+                <FileUpload
+                    files={uploadedFiles}
+                    onFilesChange={setUploadedFiles}
+                    maxFileSize={10}
+                    maxFiles={5}
+                    disabled={isSubmitting}
+                />
+                <p className="text-sm text-gray-500 mt-1">
+                    Add new images, videos, audio files, or documents to enhance your story.
+                </p>
+             </div>
 
             {/* Tags */}
             <div>

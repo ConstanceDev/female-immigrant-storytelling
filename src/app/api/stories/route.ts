@@ -27,7 +27,8 @@ import path from 'path'
           expiresAt,
           publishAt,
           geoRestrictions = [],
-          searchIndexable = false
+          searchIndexable = false,
+          mediaFiles = []
         } = body
 
         // Ensure contentWarnings is always an array and filter out empty strings
@@ -89,7 +90,7 @@ import path from 'path'
           title,
           content,
           contentType,
-          mediaFiles: [], // Will be implemented later for file uploads
+          mediaFiles: Array.isArray(mediaFiles) ? mediaFiles : [],
           tags,
           contentWarnings: processedContentWarnings,
           visibility,

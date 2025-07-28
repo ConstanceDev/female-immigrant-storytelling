@@ -5,13 +5,23 @@ import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import PersonaSelector, { Persona } from "@/components/persona/PersonaSelector"
 import TagInput from "@/components/stories/TagInput"
+import FileUpload from "@/components/stories/FileUpload"
 
+interface UploadedFile {
+  id: string
+  name: string
+  size: number
+  type: string
+  url?: string
+  file: File
+}
 export default function CreateStory() {
     const { data: session, status } = useSession()
     const router = useRouter()
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
+    const [uploadedFiles, SetUploadedFiles] = useState<UploadedFile[]>([])
 
     const [formData, setFormData] = useState({
         title: "",
@@ -39,6 +49,33 @@ export default function CreateStory() {
         setIsSubmitting(true)
 
         try {
+          let fileIds: string[] = []
+
+          // Upload files if any
+          if (uploadedFiles.length > 0) {
+            const fileFormData = new FormData()
+            uploadedFiles.forEach(uploadedFile => {
+              fileFormData.append('files', uploadedFile.file)
+            })
+
+            const FileUploadResponse = await fetch("/api/files/upload", {
+              method: "POST",
+              body: fileFormData
+            })
+
+            if (FileUploadResponse.ok) {
+              const uploadResult = await FileUploadResponse.json()
+              fileIds = uploadResult.uploadedFiles?.map((file: any) => file.id) || []
+
+              if (uploadResult.errors && uploadResult.errors.length > 0) {
+                alert("Some files failed to uploaded:\n" + uploadResult.errors.join("\n"))
+              }
+            } else {
+              throw new Error("File upload failed")
+            }
+          }
+
+          // Create story with file reference
             const response = await fetch("/api/stories", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -49,6 +86,7 @@ export default function CreateStory() {
                     contentWarnins: formData.contentWarnings.split(",").map(warning => warning.trim()).filter(Boolean),
                     expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : null,
                     publishAt: formData.publishAt ? new Date(formData.publishAt).toISOString() : null,
+                    mediaFiles: fileIds
                 })
             })
 
@@ -126,6 +164,23 @@ mb-2">
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Share your journey, experiences, challenges, or victories..."
               />
+            </div>
+
+            {/* Media Files */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Media Files (optional)
+              </label>
+              <FileUpload
+                files={uploadedFiles}
+                onFilesChange={SetUploadedFiles}
+                maxFileSize={10}
+                maxFiles={5}
+                disabled={isSubmitting}
+              />
+              <p className="text-sm text-gray-500 mt-1">
+                Add images, videos, audio files, or documents to enhance your story.
+              </p>
             </div>
 
             {/* Tags */}

@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# uploads directory (user-uploaded files)
+/uploads/
+/data/uploaded-files.json
