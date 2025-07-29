@@ -112,7 +112,7 @@
 
       const getPersonaAvatar = (story: Story) => {
           const avatar = createAvatar(initials, {
-              seed: story.author.avatarSeed,
+              seed: story.author.avatarSeed || story.id,
               backgroundColor: ['b6e3f4','c084fc','818cf8','fb7185','fbbf24'],
               backgroundType: ['solid']
           })
@@ -156,7 +156,7 @@
                   >
                     <Avatar
                       src={avatarUrl}
-                      fallback={session.user?.pseudonym?.[0] || "U"}
+                      fallback={(session.user?.pseudonym || session.user?.name).charAt(0)?.toUpperCase() ||"U"}
                       size="2"
                     />
                     <Text size="2">{session.user?.pseudonym || session.user?.name}</Text>
@@ -284,7 +284,7 @@
                         <Flex align="center" gap="2" className="pb-2 border-b border-gray-100">
                           <Avatar
                             src={getPersonaAvatar(story)}
-                            fallback={story.author.pseudonym[0]}
+                            fallback={story.author?.pseudonym?.charAt(0)?.toUpperCase() || "P"}
                             size="1"
                           />
                           <Text size="1" className="text-gray-500">

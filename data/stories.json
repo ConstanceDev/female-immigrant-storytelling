@@ -204,5 +204,57 @@
     "_count": {
       "comments": 0
     }
+  },
+  {
+    "id": "1753723055413",
+    "title": "Test - upload with files",
+    "content": "Test - upload with files",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [
+      "friendship"
+    ],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753225729338_itwfc4c30an",
+    "createdAt": "2025-07-28T17:17:35.413Z",
+    "updatedAt": "2025-07-29T14:30:06.262Z",
+    "author": {
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
+  },
+  {
+    "id": "1753799486574",
+    "title": "Test - upload image",
+    "content": "Test - upload image",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [],
+    "contentWarnings": [],
+    "visibility": "anonymous_public",
+    "selectedUserIds": [],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753225729338_itwfc4c30an",
+    "createdAt": "2025-07-29T14:31:26.574Z",
+    "updatedAt": "2025-07-29T14:31:26.574Z",
+    "author": {
+      "avatarSeed": "118081953351798648892"
+    },
+    "_count": {
+      "comments": 0
+    }
   }
 ]

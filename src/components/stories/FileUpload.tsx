@@ -25,8 +25,8 @@ interface FileUploadedProps {
 const DEFAULT_MAX_FILE_SIZE = 10 // 10MB
 const DEFAULT_MAX_FILES = 5
 const DEFAULT_ACCEPTED_TYPES = [
-    'image/jepg',
     'image/jpg',
+    'image/jepg',
     'image/png',
     'image/gif',
     'image/webp',
@@ -74,9 +74,20 @@ export default function FileUpload ({
             return `File size must be less than ${maxFileSize}MB. Current file is ${fileSizeMB.toFixed(2)}MB.`
         }
 
-        // Check file type
-        if (!acceptedTypes.includes(file.type)) {
-            return `File type ${file.type} is not supported. Supported types: ${acceptedTypes.join(', ')}`
+        // Check file type - also check file extension as fallback
+        const fileExtension = file.name.toLowerCase().split('.').pop()
+        const isValidType = acceptedTypes.includes(file.type)
+        const isValidExtension = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'mp4', 'webm', 'mp3', 'wav', 'ogg', 'pdf', 'txt'].includes(fileExtension || '')
+
+        if (!isValidType && !isValidExtension) {
+            console.log('File validation failed:', {
+                fileName: file.name,
+                fileType: file.type,
+                fileExtension,
+                acceptedTypes
+            })
+            return `File type ${file.type} is not supported. Supported types: image/jepg, image/png, image/gif, image/webp, video/mp4, video/webm, video/quicktime, audio/mpeg,
+            audio/wav, audio/ogg, application/pdf, text/plain`
         }
 
         // Check total file count

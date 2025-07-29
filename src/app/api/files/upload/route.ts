@@ -1,16 +1,16 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import fs from 'fs'
 import path from 'path'
 import { writeFile } from "fs/promises";
 
-const MAX_FILE_SIZE = 10 * 1024 // 10MB in bytes
+const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB in bytes
 const MAX_FILES_PER_USER = 50 // Maximum files per user
 const ALLOWED_TYPES = [
-    'image/jepg',
     'image/jpg',
+    'image/jpeg',
     'image/png',
     'image/gif',
     'image/webp',
@@ -98,7 +98,18 @@ export async function POST(req: NextRequest) {
                     continue
                 }
 
-                if (!ALLOWED_TYPES.includes(file.type)) {
+                // Check file type - also check file extension as fallback
+                const fileExt = file.name.toLowerCase().split('.').pop()
+                const isValidType = ALLOWED_TYPES.includes(file.type)
+                const isValidExtension = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'mp4', 'webm', 'mp3', 'wav', 'ogg', 'pdf', 'txt'].includes(fileExt || '')
+
+                if (!isValidType && !isValidExtension) {
+                    console.log('Server file validation failed:', {
+                        fileName: file.name,
+                        fileType: file.type,
+                        fileExtension: fileExt,
+                        allowedTypes: ALLOWED_TYPES
+                    })
                     errors.push(`${file.name}: File type ${file.type} not allowed`)
                     continue
                 }
@@ -134,7 +145,7 @@ export async function POST(req: NextRequest) {
             }
         }
 
-        // Save file recoords to database
+        // Save file records to database
         if (uploadResults.length > 0) {
             const updatedFiles = [...existingFiles, ...uploadResults]
             fs.writeFileSync(filesDbPath, JSON.stringify(updatedFiles, null, 2))
