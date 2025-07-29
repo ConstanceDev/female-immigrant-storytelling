@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Storytelling Platform",
+  title: "Her DiasporaVoices",
   description: "A safe space for female immigrants to share their stories",
 };
 
