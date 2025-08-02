@@ -24,30 +24,6 @@
     }
   },
   {
-    "id": "1752855152521",
-    "storyId": "1752256743769",
-    "content": "Test",
-    "authorId": "118081953351798648892",
-    "createdAt": "2025-07-18T16:12:32.521Z",
-    "updatedAt": "2025-07-18T16:12:32.521Z",
-    "author": {
-      "pseudonym": "Constance",
-      "avatarSeed": "118081953351798648892"
-    }
-  },
-  {
-    "id": "1752855766370",
-    "storyId": "1752256743769",
-    "content": "Test 2",
-    "authorId": "118081953351798648892",
-    "createdAt": "2025-07-18T16:22:46.370Z",
-    "updatedAt": "2025-07-18T16:22:46.370Z",
-    "author": {
-      "pseudonym": "Constance",
-      "avatarSeed": "118081953351798648892"
-    }
-  },
-  {
     "id": "1752856191397",
     "storyId": "1752856182724",
     "content": "Test comment",
@@ -80,6 +56,31 @@
     "updatedAt": "2025-07-23T15:57:53.312Z",
     "author": {
       "pseudonym": "Constance",
+      "avatarSeed": "118081953351798648892"
+    }
+  },
+  {
+    "id": "1753963253859",
+    "storyId": "1752256743769",
+    "content": "Your food truck sounds amazing! Where can I find you? I've been craving authentic flavours since I moved here.",
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753281717065_l2t9mm2qdj",
+    "createdAt": "2025-07-31T12:00:53.859Z",
+    "updatedAt": "2025-07-31T12:00:53.859Z",
+    "author": {
+      "pseudonym": "Second Persona",
+      "avatarSeed": "118081953351798648892_1753281709959"
+    }
+  },
+  {
+    "id": "1753963266639",
+    "storyId": "1752256743769",
+    "content": "This story perfectly captures the immigrant experience. Thank you for not watering down your spices OR your spirit! 🌶️",
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753225729338_itwfc4c30an",
+    "createdAt": "2025-07-31T12:01:06.639Z",
+    "updatedAt": "2025-07-31T12:01:06.639Z",
+    "author": {
       "avatarSeed": "118081953351798648892"
     }
   }

@@ -38,7 +38,7 @@
         <Card className="w-full max-w-md p-6">
           <Flex direction="column" gap="6" align="center">
             <Heading size="6" style={{ color: 'rgb(17 24 39)' }}>
-              Welcome to Your Safe Space
+              Welcome to Her DiasporaVoices
             </Heading>
 
             <Text size="3" style={{ color: 'rgb(75 85 99)' }}>

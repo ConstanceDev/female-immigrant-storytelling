@@ -48,7 +48,7 @@ return (
                   </Link>
                   <Link href="/resources">
                     <Text size="3" className="text-brown-700 hover:text-brown-900 px-3 py-2 font-medium">
-                      Submit
+                      Resources
                     </Text>
                   </Link>
                   <ThemeToolbar />
@@ -95,7 +95,7 @@ return (
                   </Link>
                   <Link href="/resources">
                     <Text size="3" className="text-brown-700 hover:text-brown-900 block px-3 py-2 font-medium">
-                      Submit
+                      Resources
                     </Text>
                   </Link>
                   <Button
@@ -266,7 +266,7 @@ return (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* Privacy First */}
               <Card className="p-8 border border-brown-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#E8D5FF' }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#fcd5ce' }}>
                   <div className="text-2xl">🔒</div>
                 </div>
                 <Heading size="5" className="text-brown-900 mb-4 font-bold">Privacy First</Heading>
@@ -277,7 +277,7 @@ return (
 
               {/* Safe Community */}
               <Card className="p-8 border border-brown-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#FFE8D6' }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#e9edc9' }}>
                   <div className="text-2xl">🤝</div>
                 </div>
                 <Heading size="5" className="text-brown-900 mb-4 font-bold">Safe Community</Heading>
@@ -288,7 +288,7 @@ return (
 
               {/* UK Resources */}
               <Card className="p-8 border border-brown-200 hover:shadow-lg transition-shadow">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#D1F2EB' }}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: '#cce6f4' }}>
                   <div className="text-2xl">📚</div>
                 </div>
                 <Heading size="5" className="text-brown-900 mb-4 font-bold">
@@ -310,6 +310,7 @@ return (
             </Heading>
             <div className="mb-5"></div>
             <Text size="4" className="text-brown-700 mb-12 leading-relaxed block">
+              We never collect identifying data — you decide what to share, how to share, and when. 
               We prioritize your privacy. Stories are shared with your consent, and personal details are protected.
               Learn more about our commitment to secure storytelling.
             </Text>
@@ -387,7 +388,7 @@ return (
               </div>
             </div>
 
-            <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#ff477e' }}>
+            <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#fb6f92' }}>
               <Text size="2" className="text-white">© 2025 Her DiasporaVoices. All rights reserved.</Text>
             </div>
           </div>

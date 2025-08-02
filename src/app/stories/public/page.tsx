@@ -4,6 +4,7 @@
   import { useRouter } from "next/navigation"
   import { createAvatar } from '@dicebear/core'
   import { initials } from '@dicebear/collection'
+  import {  Heading } from "@radix-ui/themes";
   import ContentWarning from "@/components/safety/ContentWarning"
   import Comments from "@/components/stories/Comments"
   import MediaViewer from "@/components/stories/MediaViewer"
@@ -168,13 +169,13 @@
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <h1 className="text-2xl font-semibold">Community Stories</h1>
+          <Heading size="5">Community Stories</Heading>
           <div className="flex gap-4">
             <button
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/dashboard")}
               className="text-gray-600 hover:text-gray-800"
             >
-              Home
+              Back to Dashboard
             </button>
             <button
               onClick={() => router.push("/auth/signin")}

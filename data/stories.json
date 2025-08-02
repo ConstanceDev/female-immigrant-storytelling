@@ -1,12 +1,17 @@
 [
   {
     "id": "1752256700816",
-    "title": "Test 2",
-    "content": "This is a story for testing ",
+    "title": "Finding My Voice in the Library",
+    "content": "When I first arrived in Manchester three years ago, I could barely string together a sentence in English. My confidence was shattered after years of being told my accent was \"wrong\" back home. The local library became my sanctuary.\nEvery Tuesday and Thursday, I would sit in the same corner with my notebook, listening to the conversations around me. The librarian, Mrs. Henderson, noticed me struggling with forms one day. Instead of taking over, she sat with me and waited patiently as I sounded out each word.\n\"Your accent isn't wrong, love,\" she said. \"It's yours.\"\nThat simple statement changed everything. Mrs. Henderson introduced me to the conversation group that met there every week. Slowly, I began to speak. First in whispers, then with more confidence.\nLast month, I was asked to help translate for a new family from my country. As I watched their faces light up when they understood the housing forms, I realised something profound: my voice—with its accent, its mix of languages, its unique story—wasn't something to hide. It was a bridge.\nNow I volunteer at the library every week, helping others find their voices too. Sometimes the most powerful thing we can do is simply be heard.",
     "contentType": "text",
     "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": "",
+    "tags": [
+      "support",
+      "manchester",
+      "student-life",
+      "discrimination"
+    ],
+    "contentWarnings": [],
     "visibility": "private",
     "selectedUserIds": [],
     "expiresAt": null,
@@ -15,23 +20,29 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "createdAt": "2025-07-11T17:58:20.816Z",
-    "updatedAt": "2025-07-11T17:58:20.816Z",
+    "updatedAt": "2025-07-30T21:38:38.731Z",
     "author": {
-      "pseudonym": "Constance",
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
       "comments": 0
-    }
+    },
+    "personaId": "persona_1753225729338_itwfc4c30an"
   },
   {
     "id": "1752256743769",
-    "title": "Test 3",
-    "content": "This is a public story testing ",
+    "title": "The Taste of Home",
+    "content": "The smell of cardamom and cinnamon filled my tiny kitchen as I stirred the pot of chai. My flatmate wrinkled her nose. \"That's quite strong, isn't it?\" she said, opening the window.\nI wanted to explain that this wasn't just tea—it was my grandmother's recipe, passed down through four generations. That the ratio of spices was perfected over decades of morning conversations in our family kitchen. That every sip connected me to a home I could only visit once a year now.\nInstead, I just smiled and said, \"Sorry, I'll make it lighter next time.\"\nFor months, I watered down my food, my spices, my very essence, trying to fit into this new country. I ate bland sandwiches for lunch while my heart craved the complex flavours of my childhood.\nThen I met Priya at the community centre. She was heating up leftover curry, unapologetically filling the microwave area with the rich scent of garam masala. When someone made a comment about the smell, she simply said, \"Smells like home to me.\"\nHer confidence inspired me. I started a small catering business from my kitchen, making authentic dishes for other immigrants missing home. Now I have a food truck, and my \"too strong\" chai is the bestseller.\nLast week, my original flatmate came by and ordered a large chai. \"I never realised what I was missing,\" she said. \"This is incredible.\"\nSometimes we don't need to make ourselves smaller. Sometimes the world just needs time to appreciate what we bring to the table.",
     "contentType": "text",
     "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": "",
+    "tags": [
+      "food",
+      "culture",
+      "family",
+      "nostalgia",
+      "business"
+    ],
+    "contentWarnings": [],
     "visibility": "anonymous_public",
     "selectedUserIds": [],
     "expiresAt": null,
@@ -40,23 +51,25 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "createdAt": "2025-07-11T17:59:03.769Z",
-    "updatedAt": "2025-07-11T17:59:03.769Z",
+    "updatedAt": "2025-07-30T21:40:04.973Z",
     "author": {
-      "pseudonym": "Constance",
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
       "comments": 2
-    }
+    },
+    "personaId": "persona_1753225729338_itwfc4c30an"
   },
   {
     "id": "1752257685607",
-    "title": "Test for content warning",
-    "content": "Test for content warning. This is a test story.",
+    "title": "Invisible Wounds",
+    "content": "For two years, I told myself it was normal. The way he checked my phone. The way he decided what I could wear. The way he isolated me from the few friends I'd made in this new country.\n\"You don't understand British culture,\" he would say. \"I'm protecting you.\" He convinced me that the bruises were my fault, that if I were a better wife, he wouldn't get so angry.\nBeing an immigrant made everything worse. I didn't know my rights. I was afraid that reporting him would affect my visa status. He told me the police wouldn't believe a foreign woman over a British citizen. He controlled our finances, so I had nowhere to go.\nThe breaking point came when I saw our neighbour with a black eye. She was also an immigrant, married to his friend. We looked at each other and somehow knew. In that moment of recognition, the spell broke.\nShe whispered a phone number to me. The domestic violence helpline. \"They speak our language,\" she said. \"They understand.\"\nThat call changed my life. The woman on the other end explained my rights, connected me with legal aid, and helped me understand that my immigration status couldn't be used against me if I reported the abuse.\nLeaving wasn't easy. The legal process was long and frightening. But I wasn't alone. The support workers understood the specific challenges faced by immigrant women. They helped me rebuild my life piece by piece.\nI'm sharing this because I know there are other women reading this who might recognise their own story. You are not alone. You deserve safety and respect. And there are people who will believe you and help you.",
     "contentType": "text",
     "mediaFiles": [],
     "tags": [],
-    "contentWarnings": "Test",
+    "contentWarnings": [
+      "domestic violence"
+    ],
     "visibility": "anonymous_public",
     "selectedUserIds": [],
     "expiresAt": null,
@@ -65,22 +78,26 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "createdAt": "2025-07-11T18:14:45.607Z",
-    "updatedAt": "2025-07-11T18:14:45.607Z",
+    "updatedAt": "2025-07-30T21:40:49.824Z",
     "author": {
-      "pseudonym": "Constance",
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
       "comments": 0
-    }
+    },
+    "personaId": "persona_1753225729338_itwfc4c30an"
   },
   {
     "id": "1752274098333",
-    "title": "Test 4",
-    "content": "Test: if no warning keyword, display content warnings?",
+    "title": "The Interview",
+    "content": "\"We're looking for someone who fits our company culture,\" the interviewer said, his eyes lingering on my headscarf before quickly looking away.\nThis was my fourteenth interview in three months. Each time, I was perfectly qualified on paper. Each time, there was some vague reason why I wasn't \"quite right\" for the role.\nI'd spent five years retraining, getting UK qualifications to add to my engineering degree from back home. I'd perfected my CV, practised my interview skills, and networked until my cheeks hurt from smiling.\nBut apparently, being a qualified, experienced engineer wasn't enough if you didn't \"fit the culture.\"\nMy breaking point came after interview fifteen. I sat in my car in the car park and cried tears of frustration. Then I called my mentor, Sarah, who I'd met through a professional women's network.\n\"Have you considered starting your own consultancy?\" she asked. \"Your expertise is needed. Maybe the problem isn't you—maybe it's that these companies aren't ready for excellence that comes in your package.\"\nSix months later, I registered my own engineering consultancy. My first client? A small firm that valued competence over conformity. Then another. Word spread about the quality of my work.\nLast month, one of the companies that had rejected me called. They wanted to hire my consultancy for a major project. The same interviewer was on the call. When he realised who I was, there was an awkward pause.\n\"Sometimes the best fit is being your own boss,\" I told him.\nMy consultancy now employs three other engineers—all of whom had faced similar barriers. We're creating our own culture: one where talent matters more than appearance, where diversity is strength, not a hurdle to overcome.",
     "contentType": "text",
     "mediaFiles": [],
-    "tags": [],
+    "tags": [
+      "employment",
+      "discrimination",
+      "perseverance"
+    ],
     "contentWarnings": [],
     "visibility": "anonymous_public",
     "selectedUserIds": [],
@@ -90,47 +107,29 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "createdAt": "2025-07-11T22:48:18.333Z",
-    "updatedAt": "2025-07-11T22:48:18.333Z",
+    "updatedAt": "2025-07-30T21:41:55.169Z",
     "author": {
-      "pseudonym": "Constance",
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
       "comments": 0
-    }
-  },
-  {
-    "id": "1752328638044",
-    "title": "Test 5",
-    "content": "\n\n\n\n\n\nThis is test for long story:  Over the past 21 long months of Israel’s genocidal war on Gaza, voices all over the world have decried the demise of international law and the rule-based order. And indeed, the facade of Israel’s adherence to international law has vanished and policies that constitute war crimes are now brazenly declared.\n\nThis week, Israel’s defence minister, Israel Katz, has shared plans to forcibly move Palestinians into a camp in the ruins of Rafah. Once they enter, they cannot leave. In other words, a concentration camp, which by definition is an internment centre for members of a national group (as well as political prisoners or minority groups) on the grounds of security or punishment, usually by military order. Michael Sfard, an Israeli human rights lawyer, was quoted in the Guardian as saying that Katz “laid out an operational plan for a crime against humanity”. Hundreds have been killed and thousands wounded trying to access food.\n\nI have tried hard to understand the incomprehensible suffering endured by Palestinians in Gaza and how it is that most Israelis do not acknowledge their humanity. How are they able to show no remorse for what their army is carrying out in their name? I believe the seed of our dehumanisation was planted during the Arab-Israeli war in 1948. Palestinians were violently deprived of land, property and belongings in what we would come to call the Nakba (Arabic for “the catastrophe”), on the grounds that the land was God-given to the Jewish people. From that time, Israelis have been able to use Arab homes, lands and orchards without any feeling of guilt. The 7 October attacks were the starting point of the war, but Israel has been systematically degrading and dispossessing the Palestinian people for decades.\n\nSuch violations of international law lead to a feeling of despair about the inability of institutions to prevent the horrors of Israeli actions in Gaza and the West Bank and to hold perpetrators to account. The UN-backed international criminal court has issued arrest warrants for Netanyahu and former defence minister Yoav Gallant over allegations of “the war crime of starvation as a method of warfare; and the crimes against humanity of murder, persecution and other inhumane acts”. No arrests have been made. The west continues to supply military and political support to Israel. I ask myself: should we Palestinians feel helpless in the face of this failure?\n\nAnd yet the truth is that international law, though used as a measuring stick and point of reference by human rights organisations, has never been Palestine’s salvation. Ever since the failure to implement the 1948 UN resolution 194, which gave Palestinian refugees the right to return to their homes in what became Israel, we have been disappointed again and again.\n\nThis has not been for lack of attempts by Palestinians over the years to invoke the law – whether through Israeli courts, international tribunals or third-party enforcement mechanisms. One simple reason for their failure has been that international law lacks effective means of enforcement. More complex reasons rest with the interests of the powerful. My hope lies in Palestinian resilience.\n\nThe prevalent hope and expectation was that the Palestinians would forget their land in a generation or two. This proved totally unfounded. Seventy-seven years later, Palestinians are as attached to the land they were forced from as in those first few bloody days.\n\nLikewise with all the illegal changes and extensive Jewish settlement and altered geography in my home, the West Bank, we Palestinians continue to hold on to the practice we call sumoud: refusing to give up or leave. I cannot speak for Palestinians in Gaza, but I can see that we share the same spirit despite the immensity of the suffering.\n\nWhen the war ends, and journalists and foreign organisations are allowed access to Gaza, the truth will emerge. The heart-wrenching first-hand accounts by those living there – the experiences of the women, men and children, of artists, writers and poets; lives cut short, or changed irrevocably – may yet come to haunt Israelis.\n\nIt will be our humanity, not any international law, that will judge and hold Israel and its allies accountable. On a different scale but in no less glaring a manner, the illegal unilateral changes that Israel is carrying out in the West Bank, often with the aid of settler militias, will provide an image of Israeli greed for land and its ideologically driven policies.\n\nPerhaps there is no better example of the absurdity of Israel’s actions than the case of the Old City of Hebron. The city is held hostage by a small group of Jewish extremists numbering 900 who live in the centre of Hebron – the second-largest Palestinian city in the West Bank, with a population of 232,500. The Jewish population is protected day and night by more than 1,000 Israeli soldiers. To allow settlers and soldiers to move freely, restrictions on Palestinian movement include dozens of fortified checkpoints, roadblocks and permanent and temporary military posts. The old city has practically been emptied of its Palestinian population. Is this sustainable?\n\nAs far as the future of Gaza is concerned, the question that is going to be crucial is whether, with the destruction of the means of surviving – the farmland, water supplies, hospitals and schools – the land can continue to sustain life.\n\nThe world community that has shamefully failed to enforce international law could make a difference on this matter if it insists that, after the end of hostilities, Israel allows the opening of the Gaza Strip and ensures that aid is brought to enable Palestinians to continue living there while the area is rebuilt.\n\nGaza has a history of 4,000 years of continuous human habitation. Israel’s attempt at causing life there to cease is doomed to fail. Palestinians will, either with the help of others or without, find a way to survive.\n\nRaja Shehadeh is a Palestinian lawyer and writer, and founder of the human rights organisation Al-Haq. His latest book is Forgotten: Searching for Palestine’s Hidden Places and Lost Memorials, with Penny Johnson.\n\nNow is not the time to look away\nIt’s the Guardian’s job to keep a close focus on events in the Middle East for our global audience. \n\nWith reporters sharing live updates around the clock, including from inside Gaza, we’re well-placed to provide comprehensive, fact-checked reporting to show the world what is happening in the region. But we can’t do it without your support.\n\nWe rely on the generosity of our readers, whose support helps to keep our correspondents on the ground and our reporting free from commercial or political influence. \n\nWe appreciate that not everyone can afford to pay for news, but if you can, can we count on your support? Here are three good reasons to make the choice to fund us today:\n\n1. Our quality, investigative journalism is a scrutinising force.\n\n2. We are independent and have no billionaire owner dictating what we do – your money directly powers our reporting.\n\n3. It doesn’t cost much, and takes less time than it took to read this message.",
-    "contentType": "text",
-    "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": [],
-    "visibility": "anonymous_public",
-    "selectedUserIds": [],
-    "expiresAt": null,
-    "publishAt": null,
-    "geoRestrictions": [],
-    "searchIndexable": false,
-    "authorId": "118081953351798648892",
-    "createdAt": "2025-07-12T13:57:18.044Z",
-    "updatedAt": "2025-07-12T13:57:18.044Z",
-    "author": {
-      "pseudonym": "Constance",
-      "avatarSeed": "118081953351798648892"
     },
-    "_count": {
-      "comments": 0
-    }
+    "personaId": "persona_1753225729338_itwfc4c30an"
   },
   {
     "id": "1752856182724",
-    "title": "Test 1",
-    "content": "Test 1",
+    "title": "Learning to Dance Again",
+    "content": "I stopped dancing the day I left my country. Dance had been my language, my joy, my way of processing the world. But in this new place, surrounded by unfamiliar rhythms and unfamiliar faces, my body forgot how to move.\nDepression crept in slowly. First, it was just the dancing that stopped. Then the singing. Then laughing. Eventually, I struggled to get out of bed.\nMy GP was kind but busy. \"Adjustment disorder,\" she said, prescribing antidepressants and recommending I \"try to socialise more.\" She meant well, but how do you explain that socialising feels impossible when you've lost your very sense of self?\nThe turning point came when I found a therapist who specialised in working with immigrants and refugees. Dr. Amara understood the unique grief of leaving one's homeland—even when that leaving was by choice.\n\"You're not just adjusting to a new country,\" she explained. \"You're grieving the loss of your old self and trying to birth a new one. That's profound work.\"\nWe talked about identity, about belonging, about the space between who I was and who I was becoming. Slowly, I began to recognise that my sadness wasn't a failure—it was a natural response to an enormous life change.\nThe breakthrough came six months into therapy. Dr. Amara suggested I try moving to music again, even if it wasn't dancing. I put on a song from home and just swayed in my living room.\nTears came first. Then, gradually, my feet remembered their rhythm. My hips remembered their sway. My arms remembered how to tell stories in the air.\nNow I teach dance classes at the community centre—fusion style, blending movements from my homeland with contemporary techniques I've learned here. My students are other immigrants, other people learning to move between worlds.\nWe dance our grief. We dance our hope. We dance ourselves into being, again and again.",
     "contentType": "text",
     "mediaFiles": [],
-    "tags": [],
+    "tags": [
+      "mental health",
+      "self-care",
+      "therapy",
+      "healthcare",
+      "identity",
+      "healing"
+    ],
     "contentWarnings": [],
     "visibility": "anonymous_public",
     "selectedUserIds": [],
@@ -140,22 +139,27 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "createdAt": "2025-07-18T16:29:42.724Z",
-    "updatedAt": "2025-07-18T16:29:42.724Z",
+    "updatedAt": "2025-07-30T21:42:49.456Z",
     "author": {
-      "pseudonym": "Constance",
       "avatarSeed": "118081953351798648892"
     },
     "_count": {
       "comments": 3
-    }
+    },
+    "personaId": "persona_1753225729338_itwfc4c30an"
   },
   {
     "id": "1753286380035",
-    "title": "Test - second persona post",
-    "content": "Test - second persona post",
+    "title": "The School Gate",
+    "content": "Every morning, I stood at the school gate feeling invisible. The other mums chatted in clusters, their easy laughter creating barriers I couldn't cross. My English was functional—good enough for parent-teacher conferences and shopping—but not confident enough for the quick wit and cultural references that bonded these women.\nMy daughter, Aria, would run off to join her friends without a backward glance. She belonged here in a way I envied. Her accent was pure Yorkshire now, her references to TV shows and pop stars seamlessly British. At home, she'd translate playground politics for me, patient with my questions about British social customs.\n\"Why don't you just talk to them, Mum?\" she'd ask. At eight years old, she couldn't understand that courage isn't always as simple as walking up and saying hello.\nThe breakthrough came during a rainy Tuesday when school was cancelled last minute. I was frantically trying to arrange childcare when Sarah, another mum, approached me.\n\"I'm working from home today,\" she said. \"Aria's welcome to come round with my Emma. They're best friends anyway.\"\nThat afternoon, as our daughters played, Sarah and I talked. Really talked. About the challenges of raising children in a foreign country, about missing our own mothers' advice, about feeling caught between preserving our culture and helping our children integrate.\n\"I always thought you didn't want to chat,\" Sarah admitted. \"You seemed so composed, so together. I didn't want to bother you.\"\nIt turned out the barriers I'd perceived were partly my own construction. Some of the other mums had been just as uncertain about approaching me.\nNow, six months later, our house hosts the monthly \"international coffee morning.\" Women from twelve different countries gather to share stories, swap parenting tips, and create the community we all craved.\nAria still translates British culture for me sometimes, but now I have other voices helping too. And perhaps most importantly, I've found my own voice in this new place—accented, hesitant sometimes, but authentically mine.",
     "contentType": "text",
     "mediaFiles": [],
-    "tags": [],
+    "tags": [
+      "motherhood",
+      "education",
+      "community",
+      "children"
+    ],
     "contentWarnings": [],
     "visibility": "anonymous_public",
     "selectedUserIds": [],
@@ -166,9 +170,9 @@
     "authorId": "118081953351798648892",
     "personaId": "persona_1753281717065_l2t9mm2qdj",
     "createdAt": "2025-07-23T15:59:40.035Z",
-    "updatedAt": "2025-07-23T15:59:40.035Z",
+    "updatedAt": "2025-07-30T21:43:34.126Z",
     "author": {
-      "pseudonym": "Test",
+      "pseudonym": "Second Persona",
       "avatarSeed": "118081953351798648892_1753281709959"
     },
     "_count": {
@@ -177,14 +181,15 @@
   },
   {
     "id": "1753469213573",
-    "title": "Test Tag - updated",
-    "content": "Test post tag",
+    "title": "The Night Shift",
+    "content": "\"You're overqualified for this position,\" the nursing supervisor said, scanning my CV. \"But your foreign qualifications mean you'll need to start as a healthcare assistant.\"\nI had been a senior cardiac nurse for eight years in my home country. I'd managed intensive care units, trained junior staff, and saved lives on countless night shifts. But my diploma, framed and carefully translated, apparently wasn't enough for the NHS to recognise my expertise.\nThe healthcare assistant role paid barely above minimum wage. After rent and expenses, I was sending nothing home to my family—the very reason I'd made this difficult journey. My mother's medications were expensive, and my younger sister's university fees weren't going to pay themselves.\nThe night shifts were the hardest. Twelve hours of being treated like I knew nothing, of being given the most basic tasks while watching newer, less experienced staff make decisions I could have made in my sleep. One particularly difficult evening, I watched a patient deteriorate while the junior nurse struggled with an assessment I could have completed in minutes.\n\"Should I call the doctor?\" she asked me, panic in her eyes.\nI guided her through what to look for, helped her recognise the signs, and stayed with her as she made the call. The patient stabilised. Later, she thanked me.\n\"How did you know all that?\" she asked.\n\"Experience,\" I said simply.\nWord spread quietly among the night shift team. Soon, other nurses were asking for my advice, seeking my opinion on difficult cases. The nursing supervisor began to notice. She started assigning me to more complex patients, watching how I worked.\nThree months later, she called me into her office. \"I've been observing your practice,\" she said. \"I'd like to fast-track your NMC registration process. We have a proper nursing position opening up, and frankly, we need your expertise.\"\nThe paperwork was still complex, the process still frustrating, but having an advocate made all the difference. Now, eighteen months later, I'm back where I belong—in the cardiac unit, using my skills to their fullest.\nLast week, I was assigned to mentor a new healthcare assistant—a qualified teacher from Syria. I sat with her during her break and said, \"Your experience matters. Don't let anyone make you forget what you're capable of.\"",
     "contentType": "text",
     "mediaFiles": [],
     "tags": [
-      "immigration",
-      "friendship",
-      "family"
+      "healthcare",
+      "career",
+      "visa",
+      "professional recognition"
     ],
     "contentWarnings": [],
     "visibility": "anonymous_public",
@@ -196,9 +201,9 @@
     "authorId": "118081953351798648892",
     "personaId": "persona_1753281717065_l2t9mm2qdj",
     "createdAt": "2025-07-25T18:46:53.573Z",
-    "updatedAt": "2025-07-27T16:37:53.489Z",
+    "updatedAt": "2025-07-30T21:49:09.795Z",
     "author": {
-      "pseudonym": "Test",
+      "pseudonym": "Second Persona",
       "avatarSeed": "118081953351798648892_1753281709959"
     },
     "_count": {
@@ -206,13 +211,15 @@
     }
   },
   {
-    "id": "1753723055413",
-    "title": "Test - upload with files",
-    "content": "Test - upload with files",
+    "id": "1753799486574",
+    "title": "The First Winter",
+    "content": "Nobody warned me about the darkness.\nI'd researched everything before moving to Edinburgh—the visa requirements, the job market, the cost of living. I'd bought warm clothes and waterproof boots. I thought I was prepared for British weather.\nBut when October came and the days started shrinking, something inside me began to shrink too. By November, sunset was at 4 PM. By December, it felt like I was living in perpetual twilight.\nBack home in the Philippines, even the rainy season brought warm downpours and tropical storms that cleared to reveal brilliant sunshine. Here, the sky was a constant grey blanket, pressing down on my spirits day after day.\nI started sleeping more, eating less. My flat felt like a cave. I'd go to work in darkness and come home in darkness, catching only glimpses of weak sunlight through office windows. Friends back home would video call showing me beach sunsets and lush green rice fields, and I'd hang up feeling more isolated than ever.\n\"It's just the weather,\" I told myself. \"You're being dramatic.\"\nThe breaking point came in January. I'd been in bed for an entire weekend, unable to summon the energy to even shower. My flatmate, Jenny, knocked on my door.\n\"Right,\" she said, seeing my state. \"We're going shopping.\"\nShe dragged me to Argos and bought the biggest, brightest lamp they had. \"Light therapy,\" she explained. \"Half of Scotland would be clinically depressed without these things. You sit in front of it for 30 minutes every morning. Doctor's orders—well, Jenny's orders.\"\nThat lamp was the beginning of my recovery. But more than that, it was Jenny's matter-of-fact kindness that saved me. She didn't make me feel weak for struggling. She normalised it.\n\"I've got one too,\" she admitted. \"Born and raised here, and I still need help with the winters. It's not about being tough—it's about being smart.\"\nShe introduced me to other coping strategies: vitamin D supplements, winter hiking groups, indoor climbing. We started a weekly tradition of \"fake beach days\"—cranking up the heating, wearing summer clothes, and watching tropical documentaries while eating ice cream.\nNow, approaching my third winter here, I'm prepared. I have my lamp, my vitamins, my strategies. More importantly, I have my community—other immigrants and locals alike who understand that seasonal sadness is real and treatable.\nLast month, I noticed our new flatmate from Brazil looking increasingly withdrawn as the days shortened. I knocked on her door with a spare light therapy lamp and an invitation to join our fake beach day tradition.\n\"Nobody warned me about the darkness,\" she said.\n\"I know,\" I replied. \"But there are ways to bring your own light.\"",
     "contentType": "text",
     "mediaFiles": [],
     "tags": [
-      "friendship"
+      "depression",
+      "friendship",
+      "resilience"
     ],
     "contentWarnings": [],
     "visibility": "anonymous_public",
@@ -223,33 +230,8 @@
     "searchIndexable": false,
     "authorId": "118081953351798648892",
     "personaId": "persona_1753225729338_itwfc4c30an",
-    "createdAt": "2025-07-28T17:17:35.413Z",
-    "updatedAt": "2025-07-29T14:30:06.262Z",
-    "author": {
-      "avatarSeed": "118081953351798648892"
-    },
-    "_count": {
-      "comments": 0
-    }
-  },
-  {
-    "id": "1753799486574",
-    "title": "Test - upload image",
-    "content": "Test - upload image",
-    "contentType": "text",
-    "mediaFiles": [],
-    "tags": [],
-    "contentWarnings": [],
-    "visibility": "anonymous_public",
-    "selectedUserIds": [],
-    "expiresAt": null,
-    "publishAt": null,
-    "geoRestrictions": [],
-    "searchIndexable": false,
-    "authorId": "118081953351798648892",
-    "personaId": "persona_1753225729338_itwfc4c30an",
     "createdAt": "2025-07-29T14:31:26.574Z",
-    "updatedAt": "2025-07-29T14:31:26.574Z",
+    "updatedAt": "2025-07-30T21:49:52.103Z",
     "author": {
       "avatarSeed": "118081953351798648892"
     },
