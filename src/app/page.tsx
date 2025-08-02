@@ -368,7 +368,7 @@ return (
               <div>
                 <Heading size="4" className="text-white mb-4 font-semibold">Support</Heading>
                 <ul className="space-y-3">
-                  <li><Link href="/contact"><Text size="2" className="text-white hover:underline">Contact Us</Text></Link></li>
+                  <li><Link href="/support"><Text size="2" className="text-white hover:underline">Contact Us</Text></Link></li>
                   <li><Link href="/support"><Text size="2" className="text-white hover:underline">Technical Support & Feedback</Text></Link></li>
                 </ul>
               </div>

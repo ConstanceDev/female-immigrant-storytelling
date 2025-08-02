@@ -272,7 +272,7 @@ export default function About() {
                     Share Your Story
                 </Button>
                 <Button
-                    onClick={() => router.push("/contact")}
+                    onClick={() => router.push("/support")}
                     className="text-brown-900 border border-brown-300 hover:bg-brown-50"
                     variant="outline"
                     size="3"
