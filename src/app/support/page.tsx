@@ -104,7 +104,7 @@ export default function SupportPage() {
             <Flex justify="between" align="center" className="h-16">
             <Heading size="5">Support & Feedback</Heading>
             <Button 
-                variant="ghost" 
+                variant="outline" 
                 onClick={() => router.push("/dashboard")}
             >
                 Back to Dashboard

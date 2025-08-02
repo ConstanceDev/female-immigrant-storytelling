@@ -4,7 +4,7 @@
   import { useRouter } from "next/navigation"
   import { createAvatar } from '@dicebear/core'
   import { initials } from '@dicebear/collection'
-  import {  Heading } from "@radix-ui/themes";
+  import { Heading } from "@radix-ui/themes";
   import ContentWarning from "@/components/safety/ContentWarning"
   import Comments from "@/components/stories/Comments"
   import MediaViewer from "@/components/stories/MediaViewer"
