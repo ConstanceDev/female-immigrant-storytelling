@@ -281,8 +281,55 @@ export default function About() {
                 </Button>
                 </Flex>
             </section>
-
             </main>
+
+                    {/* Footer */}
+        <footer className="text-white" style={{ backgroundColor: '#f7cad0' }}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Column 1 */}
+                <div>
+                    <Heading size="4" className="text-white mb-4 font-semibold">About</Heading>
+                    <ul className="space-y-3">
+                    <li><Link href="/about"><Text size="2" className="text-white hover:underline">About Her DiasporaVoices</Text></Link></li>
+                    <li><Link href="/sitemap"><Text size="2" className="text-white hover:underline">Site Map</Text></Link></li>
+                    <li><Link href="/diversity"><Text size="2" className="text-white hover:underline">Diversity Statement</Text></Link></li>
+                    <li><Link href="/terms"><Text size="2" className="text-white hover:underline">Terms of Service</Text></Link></li>
+                    <li><Link href="/content-policy"><Text size="2" className="text-white hover:underline">Content Policy</Text></Link></li>
+                    <li><Link href="/privacy"><Text size="2" className="text-white hover:underline">Privacy Policy</Text></Link></li>
+                    <li><Link href="/dmca"><Text size="2" className="text-white hover:underline">GDPR Policy</Text></Link></li>
+                    </ul>
+                </div>
+
+                {/* Column 2 */}
+                <div>
+                    <Heading size="4" className="text-white mb-4 font-semibold">Support</Heading>
+                    <ul className="space-y-3">
+                    <li><Link href="/support"><Text size="2" className="text-white hover:underline">Contact Us</Text></Link></li>
+                    <li><Link href="/support"><Text size="2" className="text-white hover:underline">Technical Support & Feedback</Text></Link></li>
+                    </ul>
+                </div>
+
+                {/* Column 3 */}
+                <div>
+                    <Heading size="4" className="text-white mb-4 font-semibold">Connect</Heading>
+                    <Text size="2" className="text-white mb-4 block">Join our community and share your voice safely.</Text>
+                    <div className="mb-3"></div>
+                    <Button
+                    onClick={() => router.push("/auth/signin")}
+                    className="bg-white text-gray-900 hover:bg-gray-100"
+                    size="2"
+                    >
+                    Get Started
+                    </Button>
+                </div>
+                </div>
+
+                <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#fb6f92' }}>
+                <Text size="2" className="text-white">© 2025 Her DiasporaVoices. All rights reserved.</Text>
+                </div>
+            </div>
+        </footer>
         </div>
         )
 }
