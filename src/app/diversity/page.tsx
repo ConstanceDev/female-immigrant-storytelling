@@ -183,7 +183,6 @@ export default function Diversity() {
                     <li><Link href="/terms"><Text size="2" className="text-white hover:underline">Terms of Service</Text></Link></li>
                     <li><Link href="/content-policy"><Text size="2" className="text-white hover:underline">Content Policy</Text></Link></li>
                     <li><Link href="/privacy"><Text size="2" className="text-white hover:underline">Privacy Policy</Text></Link></li>
-                    <li><Link href="/dmca"><Text size="2" className="text-white hover:underline">GDPR Policy</Text></Link></li>
                     </ul>
                 </div>
 
