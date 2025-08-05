@@ -108,7 +108,7 @@ return (
           </Card>
 
           {/* Persona Management */} 
-          <Card className="p-6">
+          <Card >
             <PersonaManager />
           </Card>
 
@@ -120,6 +120,7 @@ return (
           {/* Privacy Settings */}
           <Card className="p-6">
             <Heading size="4" className="mb-6">Privacy Settings</Heading>
+            <div className="mb-3"></div>
 
             <div className="space-y-6">
               <Flex justify="between" align="center">
@@ -188,6 +189,7 @@ return (
           {/* GDPR Compliance */}
           <Card className="p-6">
             <Heading size="4" className="mb-6">Your Data Rights</Heading>
+            <div className="mb-3"></div>
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -210,33 +212,57 @@ return (
           {/* Account Actions */}
           <Card className="p-6">
             <Heading size="4" className="mb-6">Account Actions</Heading>
-
-            <div className="space-y-4">
-              <Button
-                size="3"
-                onClick={handleSignOut}
-                style={{ backgroundColor: 'rgb(75 85 99)', color: 'white' }}
-                className="w-full md:w-auto"
-              >
-                Sign Out
-              </Button>
-
-              <div className="border-t pt-4">
-                <Text size="2" style={{ color: 'rgb(107 114 128)' }} className="mb-4">
-                  Danger Zone
-                </Text>
+            <div className="mb-3"></div>
+            
+            {/* Regular Actions */}
+            <div className="mb-5">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
-                  variant="outline"
-                  onClick={handleDeleteAccount}
-                  style={{ borderColor: '#dc2626', color: '#dc2626' }}
-                  className="hover:bg-red-50"
+                  size="3"
+                  onClick={handleSignOut}
+                  variant="soft"
+                  style={{ backgroundColor: 'rgb(75 85 99)', color: 'white' }}
+                  className="flex-1 sm:flex-none"
                 >
-                  Delete Account
+                  🚪 Sign Out
                 </Button>
-                <Text size="2" style={{ color: 'rgb(107 114 128)' }} className="mt-2 block">
+                <Button
+                  size="3"
+                  variant="outline"
+                  onClick={() => router.push("/dashboard")}
+                  className="flex-1 sm:flex-none"
+                >
+                  📊 Dashboard
+                </Button>
+              </div>
+            </div>
+
+            {/* Danger Zone */}
+            <div className="border-t border-red-200 pt-6">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+                <Flex align="center" gap="2" className="mb-2">
+                  <span className="text-red-500">⚠️</span>
+                  <Text weight="bold" style={{ color: '#dc2626' }}>
+                    Danger Zone
+                  </Text>
+                </Flex>
+                <Text size="2" style={{ color: 'rgb(107 114 128)' }}>
                   Permanently delete your account and all associated data. This action cannot be undone.
                 </Text>
               </div>
+              
+              <Button
+                variant="outline"
+                onClick={handleDeleteAccount}
+                style={{ 
+                  borderColor: '#dc2626', 
+                  color: '#dc2626',
+                  backgroundColor: 'transparent'
+                }}
+                className="hover:bg-red-50 transition-colors"
+              >
+                🗑️ Delete Account
+              </Button>
             </div>
           </Card>
         </div>

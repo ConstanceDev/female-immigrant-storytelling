@@ -10,6 +10,7 @@ export default function ThemeSettings() {
    return (
     <div className="space-y-6">
         <Heading size="4">Appearance Settings</Heading>
+        <div className="mb-3"></div>
 
         {/* Theme Toggle */} 
         <Card className="p-4">
