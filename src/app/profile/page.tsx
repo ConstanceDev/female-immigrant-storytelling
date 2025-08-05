@@ -57,8 +57,24 @@ export default function Profile() {
         if (status === "loading") return
         if (!session) {
             router.push("/auth/signin")
+        } else {
+            loadUserAvatar()
         }
     }, [session, status, router])
+
+    // Load user's saved avatar settings
+    const loadUserAvatar = async () => {
+        try {
+            const response = await fetch('/api/user/avatar')
+            if (response.ok) {
+                const data = await response.json()
+                setSelectedAvatarSeed(data.avatarSeed)
+                setSelectedAvatarStyle(data.avatarStyle || 'initials')
+            }
+        } catch (error) {
+            console.error('Error loading avatar:', error)
+        }
+    }
 
     if (status === "loading") {
         return (
@@ -137,10 +153,31 @@ export default function Profile() {
     }
 
     const handleSaveAvatar = async () => {
-        // TODO: Implement avatar save functionality
-        // This would update the user's avatarSeed in the database
-        alert(`Avatar saved! Seed: ${selectedAvatarSeed}`)
-        setShowAvatarModal(false)
+        try {
+            const response = await fetch('/api/user/avatar', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    avatarSeed: selectedAvatarSeed,
+                    avatarStyle: selectedAvatarStyle
+                })
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                alert('Avatar saved successfully!')
+                setShowAvatarModal(false)
+                // The avatar will automatically update in the UI since we're using the same state
+            } else {
+                const errorData = await response.json()
+                alert(`Failed to save avatar: ${errorData.error}`)
+            }
+        } catch (error) {
+            console.error('Error saving avatar:', error)
+            alert('An error occurred while saving your avatar. Please try again.')
+        }
     }
 
     const handleUploadImage = () => {
