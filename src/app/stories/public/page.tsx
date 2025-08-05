@@ -416,6 +416,18 @@
               </ContentWarning>
             </div>
 
+            {/* Media Files */}
+            {selectedStory.mediaFiles && selectedStory.mediaFiles.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Media</h4>
+                <MediaViewer
+                  mediaFiles={selectedStory.mediaFiles}
+                  showDownload={true}
+                  className="space-y-4"
+                />
+              </div>
+            )}
+
             {/* Tags */}
             {selectedStory.tags && selectedStory.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">

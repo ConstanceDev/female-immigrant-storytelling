@@ -48,10 +48,19 @@ export async function GET(
             return NextResponse.json({ error: "File not found" }, { status: 404 })
         }
 
-        // Check file exists on disk
-        const fullFilePath = path.join(process.cwd(), fileRecord.filePath)
+        // Check file exists on disk - try absolute path first
+        const absolutePath = `/Users/constancelu/Downloads/Coding/Projects/female-immigrant-storytelling/${fileRecord.filePath}`
+        const relativePath = path.join(process.cwd(), fileRecord.filePath)
+        
+        let fullFilePath = absolutePath
+        let fileExists = fs.existsSync(absolutePath)
+        
+        if (!fileExists) {
+            fullFilePath = relativePath
+            fileExists = fs.existsSync(relativePath)
+        }
 
-        if (!fs.existsSync(fullFilePath)) {
+        if (!fileExists) {
             return NextResponse.json({ error: "File not found on disk" }, { status: 404 })
         }
 
@@ -68,7 +77,7 @@ export async function GET(
         headers.set('Cache-Control', 'public, max-age=31536000') // 1 year
         headers.set('ETag', `"${fileRecord.id}"`)
 
-        return NextResponse.json(fileBuffer, {
+        return new NextResponse(fileBuffer, {
             status: 200,
             headers
         })
