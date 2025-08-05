@@ -5,7 +5,36 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Button, Card, Text, Flex, Heading, Switch } from "@radix-ui/themes"
 import { createAvatar } from '@dicebear/core'
-import { initials } from '@dicebear/collection'
+import { 
+    initials, 
+    adventurer,
+    adventurerNeutral,
+    avataaars,
+    avataaarsNeutral,
+    bigEars,
+    bigEarsNeutral,
+    bigSmile,
+    bottts,
+    bottsNeutral,
+    croodles,
+    croodlesNeutral,
+    funEmoji,
+    icons,
+    identicon,
+    lorelei,
+    loreleiNeutral,
+    micah,
+    miniavs,
+    notionists,
+    notionistsNeutral,
+    openPeeps,
+    personas,
+    pixelArt,
+    pixelArtNeutral,
+    rings,
+    shapes,
+    thumbs
+} from '@dicebear/collection'
 import ThemeSettings from "@/components/settings/ThemeSettings"
 import PersonaManager from "@/components/persona/PersonaManager"
 
@@ -18,6 +47,11 @@ export default function Profile() {
         dataRetention: "1year",
         anonymousPosting: true
     })
+    const [showAvatarModal, setShowAvatarModal] = useState(false)
+    const [selectedAvatarSeed, setSelectedAvatarSeed] = useState(
+      session?.user?.avatarSeed || session?.user?.name || 'default'
+    )
+    const [selectedAvatarStyle, setSelectedAvatarStyle] = useState('initials')
 
     useEffect(() => {
         if (status === "loading") return
@@ -38,13 +72,81 @@ export default function Profile() {
         return null
     }
 
-    const avatar = createAvatar(initials, {
-        seed: session.user?.avatarSeed || session.user?.name || 'default',
-        backgroundColor: ['b6e3f4','c084fc','818cf8','fb7185','fbbf24'],
-        backgroundType: ['solid'],
-    })
+    // Avatar style configurations
+    const avatarStyles = {
+        initials: { collection: initials, name: 'Initials', emoji: '🔤' },
+        adventurer: { collection: adventurer, name: 'Adventurer', emoji: '🏃‍♂️' },
+        adventurerNeutral: { collection: adventurerNeutral, name: 'Adventurer Neutral', emoji: '🚶‍♂️' },
+        avataaars: { collection: avataaars, name: 'Avataaars', emoji: '👤' },
+        avataaarsNeutral: { collection: avataaarsNeutral, name: 'Avataaars Neutral', emoji: '😐' },
+        bigEars: { collection: bigEars, name: 'Big Ears', emoji: '👂' },
+        bigEarsNeutral: { collection: bigEarsNeutral, name: 'Big Ears Neutral', emoji: '🙂' },
+        bigSmile: { collection: bigSmile, name: 'Big Smile', emoji: '😄' },
+        bottts: { collection: bottts, name: 'Bottts', emoji: '🤖' },
+        bottsNeutral: { collection: bottsNeutral, name: 'Bottts Neutral', emoji: '🤖' },
+        croodles: { collection: croodles, name: 'Croodles', emoji: '🎨' },
+        croodlesNeutral: { collection: croodlesNeutral, name: 'Croodles Neutral', emoji: '✏️' },
+        funEmoji: { collection: funEmoji, name: 'Fun Emoji', emoji: '🎭' },
+        icons: { collection: icons, name: 'Icons', emoji: '🔰' },
+        identicon: { collection: identicon, name: 'Identicon', emoji: '🔳' },
+        lorelei: { collection: lorelei, name: 'Lorelei', emoji: '👩‍🦰' },
+        loreleiNeutral: { collection: loreleiNeutral, name: 'Lorelei Neutral', emoji: '👩' },
+        micah: { collection: micah, name: 'Micah', emoji: '👨‍💼' },
+        miniavs: { collection: miniavs, name: 'Miniavs', emoji: '🧑‍💻' },
+        notionists: { collection: notionists, name: 'Notionists', emoji: '💼' },
+        notionistsNeutral: { collection: notionistsNeutral, name: 'Notionists Neutral', emoji: '📋' },
+        openPeeps: { collection: openPeeps, name: 'Open Peeps', emoji: '👥' },
+        personas: { collection: personas, name: 'Personas', emoji: '🎭' },
+        pixelArt: { collection: pixelArt, name: 'Pixel Art', emoji: '🎮' },
+        pixelArtNeutral: { collection: pixelArtNeutral, name: 'Pixel Art Neutral', emoji: '👾' },
+        rings: { collection: rings, name: 'Rings', emoji: '⭕' },
+        shapes: { collection: shapes, name: 'Shapes', emoji: '🔸' },
+        thumbs: { collection: thumbs, name: 'Thumbs', emoji: '👍' }
+    }
 
-    const avatarUrl = avatar.toDataUri()
+    // Generate avatar using current seed and style
+    const generateAvatar = (seed: string, style: string = selectedAvatarStyle) => {
+        const styleConfig = avatarStyles[style as keyof typeof avatarStyles]
+        if (!styleConfig) return ''
+
+        return createAvatar(styleConfig.collection, {
+            seed: seed,
+            backgroundColor: ['b6e3f4','c084fc','818cf8','fb7185','fbbf24'],
+            backgroundType: ['solid'],
+        }).toDataUri()
+    }
+
+    const avatarUrl = generateAvatar(selectedAvatarSeed, selectedAvatarStyle)
+
+    // Generate random avatar options for current style
+    const generateAvatarOptions = () => {
+        const randomSeeds = [
+            `${session?.user?.name || 'user'}_1`,
+            `${session?.user?.name || 'user'}_2`, 
+            `${session?.user?.name || 'user'}_3`,
+            `${session?.user?.email || 'default'}_variant`,
+            `creative_${Date.now().toString().slice(-6)}`,
+            `artistic_${Math.random().toString(36).substring(7)}`,
+            `unique_${Math.random().toString(36).substring(7)}`,
+            `style_${Math.random().toString(36).substring(7)}`
+        ]
+        return randomSeeds.map(seed => ({
+            seed,
+            url: generateAvatar(seed, selectedAvatarStyle)
+        }))
+    }
+
+    const handleSaveAvatar = async () => {
+        // TODO: Implement avatar save functionality
+        // This would update the user's avatarSeed in the database
+        alert(`Avatar saved! Seed: ${selectedAvatarSeed}`)
+        setShowAvatarModal(false)
+    }
+
+    const handleUploadImage = () => {
+        // TODO: Implement custom image upload functionality
+        alert("Custom image upload coming soon!")
+    }
 
     const handleSignOut = async () => {
         await signOut({ callbackUrl: "/"})
@@ -101,8 +203,8 @@ return (
                   Member since {new Date().toLocaleDateString()}
                 </Text>
               </div>
-              <Button onClick={() => alert("Avatar customisation coming soon!")}>
-                Change Avatar
+              <Button onClick={() => setShowAvatarModal(true)}>
+                🎨 Change Avatar
               </Button>
             </Flex>
           </Card>
@@ -267,6 +369,134 @@ return (
           </Card>
         </div>
       </main>
+
+      {/* Avatar Customization Modal */}
+      {showAvatarModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              {/* Modal Header */}
+              <div className="flex justify-between items-center mb-6">
+                <Heading size="4">Choose Your Avatar</Heading>
+                <button
+                  onClick={() => setShowAvatarModal(false)}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Current Avatar Preview */}
+              <div className="text-center mb-6">
+                <img
+                  src={generateAvatar(selectedAvatarSeed, selectedAvatarStyle)}
+                  alt="Selected avatar"
+                  className="w-24 h-24 rounded-full mx-auto mb-3 border-4 border-purple-200"
+                />
+                <Text size="2" style={{ color: 'rgb(107 114 128)' }}>
+                  Current Selection - {avatarStyles[selectedAvatarStyle as keyof typeof avatarStyles]?.name}
+                </Text>
+              </div>
+
+              {/* Avatar Style Selection */}
+              <div className="mb-6">
+                <Heading size="3" className="mb-4">Choose Avatar Style</Heading>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 max-h-64 overflow-y-auto border rounded-lg p-3">
+                  {Object.entries(avatarStyles).map(([styleKey, styleConfig]) => (
+                    <button
+                      key={styleKey}
+                      onClick={() => setSelectedAvatarStyle(styleKey)}
+                      className={`p-2 rounded-lg border-2 transition-all text-center ${
+                        selectedAvatarStyle === styleKey
+                          ? 'border-purple-500 bg-purple-50'
+                          : 'border-gray-200 hover:border-purple-300'
+                      }`}
+                    >
+                      <div className="text-2xl mb-1">{styleConfig.emoji}</div>
+                      <div className="text-xs text-gray-600 leading-tight">
+                        {styleConfig.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Upload Custom Image Section */}
+              <div className="mb-6 p-4 border-2 border-dashed border-gray-200 rounded-lg text-center">
+                <div className="mb-3">
+                  <span className="text-4xl">📸</span>
+                </div>
+                <Heading size="3" className="mb-2">Upload Custom Image</Heading>
+                <Text size="2" style={{ color: 'rgb(107 114 128)' }} className="mb-4">
+                  Use your own photo as avatar
+                </Text>
+                <div className="mb-3"></div>
+                <Button 
+                  variant="outline" 
+                  onClick={handleUploadImage}
+                  className="opacity-50"
+                >
+                  📤 Upload Image
+                </Button>
+              </div>
+
+              {/* DiceBear Avatar Options */}
+              <div className="mb-6">
+                <Heading size="3" className="mb-4">Choose from Generated Avatars</Heading>
+                <div className="grid grid-cols-4 gap-4">
+                  {generateAvatarOptions().map((option, index) => (
+                    <div
+                      key={index}
+                      className={`cursor-pointer p-2 rounded-lg border-2 transition-all hover:border-purple-300 ${
+                        selectedAvatarSeed === option.seed
+                          ? 'border-purple-500 bg-purple-50'
+                          : 'border-gray-200'
+                      }`}
+                      onClick={() => setSelectedAvatarSeed(option.seed)}
+                    >
+                      <img
+                        src={option.url}
+                        alt={`Avatar option ${index + 1}`}
+                        className="w-full h-16 rounded-full mx-auto"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Generate More Options */}
+              <div className="text-center mb-6">
+                <Button
+                  variant="soft"
+                  onClick={() => {
+                    // Force re-render by updating a random component of the seed
+                    const timestamp = Date.now().toString().slice(-6)
+                    setSelectedAvatarSeed(`${session?.user?.name || 'user'}_${timestamp}`)
+                  }}
+                >
+                  🎲 Generate New Options
+                </Button>
+              </div>
+
+              {/* Modal Actions */}
+              <div className="flex gap-3 justify-end">
+                <Button
+                  variant="soft"
+                  onClick={() => setShowAvatarModal(false)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSaveAvatar}
+                  style={{ backgroundColor: 'rgb(147 51 234)', color: 'white' }}
+                >
+                  💾 Save Avatar
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
