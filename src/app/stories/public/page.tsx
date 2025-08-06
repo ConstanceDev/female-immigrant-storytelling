@@ -442,6 +442,25 @@
               </div>
             )}
 
+            {/* Report Content */}
+            <div className="pt-4 mt-6 mb-6">
+              <div className="text-center">
+                <p className="text-gray-500 text-sm mb-3">
+                  Found something inappropriate or concerning?
+                </p>
+                <button
+                  onClick={() => {
+                    const reportUrl = `/support?category=content-issue&subject=${encodeURIComponent(`Report Story: ${selectedStory.title} (ID: ${selectedStory.id})`)}&storyId=${selectedStory.id}`
+                    router.push(reportUrl)
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg border border-red-200 transition-colors"
+                  title="Report inappropriate content"
+                >
+                  🚨 Report Content
+                </button>
+              </div>
+            </div>
+
             {/* Comments Section */}
             <Comments storyId={selectedStory.id} onCommentChange={refreshStories} />
 
@@ -459,6 +478,7 @@
                 </button>
               </div>
             </div>
+
           </div>
         </div>
       </div>

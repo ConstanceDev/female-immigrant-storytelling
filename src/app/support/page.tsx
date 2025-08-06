@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation" 
+import { useRouter, useSearchParams } from "next/navigation" 
 import {
     Card,
     Text,
@@ -29,14 +29,15 @@ import {
 const feedbackCategories = [
     { value: "bug", label: "Bug Report", icon: Bug, color: "red" as const },
     { value: "feature", label: "Feature Request", icon: Lightbulb, color: "blue" as const },
-    { value: "content", label: "Content Issue", icon: FileText, color: "orange" as const },
+    { value: "content-issue", label: "Content Issue", icon: FileText, color: "orange" as const },
     { value: "account", label: "Account Help", icon: AlertCircle, color: "yellow" as const },
     { value: "general", label: "General Feedback", icon: MessageCircle, color: "green" as const }
 ]
 
-export default function SupportPage() {
+function SupportPageContent() {
     const { data: session } = useSession()
     const router = useRouter()
+    const searchParams = useSearchParams()
     const [formData, setFormData] = useState({
         category: "",
         subject: "",
@@ -46,6 +47,22 @@ export default function SupportPage() {
     const [submitting, setSubmitting] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState("")
+
+    // Pre-fill form from URL parameters
+    useEffect(() => {
+        const category = searchParams.get('category')
+        const subject = searchParams.get('subject')
+        const storyId = searchParams.get('storyId')
+        
+        if (category || subject) {
+            setFormData(prev => ({
+                ...prev,
+                category: category || prev.category,
+                subject: subject || prev.subject,
+                message: storyId ? `Reporting content issue for Story ID: ${storyId}\n\nPlease describe the issue:\n` : prev.message
+            }))
+        }
+    }, [searchParams])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -312,5 +329,20 @@ export default function SupportPage() {
         </div>
         </main>
     </div>
+    )
+}
+
+export default function SupportPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading support page...</p>
+                </div>
+            </div>
+        }>
+            <SupportPageContent />
+        </Suspense>
     )
 }
