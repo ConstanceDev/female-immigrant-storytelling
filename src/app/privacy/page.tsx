@@ -675,7 +675,7 @@ return (
                 </div>
 
                 <div className="border-t mt-8 pt-8 text-center" style={{ borderTopColor: '#fb6f92' }}>
-                <Text size="2" className="text-white">© 2025 Her DiasporaVoices. All rights reserved.</Text>
+                <Text size="2" className="text-white">Copyright © 2025 Her DiasporaVoices. All rights reserved.</Text>
                 </div>
             </div>
             </footer>
