@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react"
 import PersonaSelector, { Persona } from "@/components/persona/PersonaSelector"
 import TagInput from "@/components/stories/TagInput"
 import FileUpload from "@/components/stories/FileUpload"
+import TrustedCircleSelector from "@/components/stories/TrustedCircleSelector"
+
 
 interface UploadedFile {
   id: string
@@ -22,6 +24,7 @@ export default function CreateStory() {
 
     const [selectedPersona, setSelectedPersona] = useState<Persona | null>(null)
     const [uploadedFiles, SetUploadedFiles] = useState<UploadedFile[]>([])
+    const [selectedUserIds, setSelectedUserIds] = useState<string[]>([])
 
     const [formData, setFormData] = useState({
         title: "",
@@ -83,10 +86,11 @@ export default function CreateStory() {
                     ...formData,
                     personaId: selectedPersona?.id,
                     tags: formData.tags,
-                    contentWarnins: formData.contentWarnings.split(",").map(warning => warning.trim()).filter(Boolean),
+                    contentWarnings: formData.contentWarnings.split(",").map(warning => warning.trim()).filter(Boolean),
                     expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : null,
                     publishAt: formData.publishAt ? new Date(formData.publishAt).toISOString() : null,
-                    mediaFiles: fileIds
+                    mediaFiles: fileIds,
+                    selectedUserIds: formData.visibility === "trusted_circle" ? selectedUserIds : []
                 })
             })
 
@@ -229,7 +233,13 @@ mb-2">
                   <select
                     id="visibility"
                     value={formData.visibility}
-                    onChange={(e) => setFormData({...formData, visibility: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, visibility: e.target.value})
+                      // Clear selected users if switching away from trusted circle
+                      if (e.target.value !== "trusted_circle") {
+                        setSelectedUserIds([])
+                      }
+                    }}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
                   >
                     <option value="private">Only me (Private)</option>
@@ -237,6 +247,17 @@ mb-2">
                     <option value="anonymous_public">Anonymous public sharing</option>
                   </select>
                 </div>
+
+                {/* Trusted Circle Selection */}
+                {formData.visibility === "trusted_circle" && (
+                  <div className="mt-4 p-4 border border-purple-200 rounded-lg bg-purple-50">
+                    <TrustedCircleSelector
+                      selectedUserIds={selectedUserIds}
+                      onSelectionChange={setSelectedUserIds}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                )}
 
                 {/* Auto-delete */}
                 <div>

@@ -207,6 +207,25 @@
                 </Flex>
               </Card>
 
+              {/* Trusted Circle Card */}
+              <Card 
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => router.push("/trusted-circle")}
+              >
+                <Flex direction="column" gap="4" align="center">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <Text size="6">🔒</Text>
+                  </div>
+                  <Heading size="4">My Trusted Circle</Heading>
+                  <Text size="2" className="text-center text-gray-600">
+                    Stories shared privately with you
+                  </Text>
+                  <Button size="2" variant="outline" className="mt-2">
+                    View Circle
+                  </Button>
+                </Flex>
+              </Card>
+
               {/* Community Resources Card */}
               <Card 
                 className="p-6 hover:shadow-lg transition-shadow cursor-pointer"

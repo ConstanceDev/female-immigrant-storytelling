@@ -202,6 +202,11 @@ import path from 'path'
             return story.authorId === session.user.id || // Own stories
                    (story.visibility === "anonymous_public" && // Public stories
                     (!publishAt || publishAt <= now) &&
+                    (!expiresAt || expiresAt > now)) ||
+                   (story.visibility === "trusted_circle" && // Trusted circle stories
+                    story.selectedUserIds && 
+                    story.selectedUserIds.includes(session.user.id) &&
+                    (!publishAt || publishAt <= now) &&
                     (!expiresAt || expiresAt > now))
           })
         }

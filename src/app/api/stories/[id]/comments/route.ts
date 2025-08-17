@@ -77,6 +77,34 @@ import path from 'path'
         return NextResponse.json({ error: "Story not found" }, { status: 404 })
       }
 
+      // Check if user has access to this story
+      const now = new Date()
+      const publishAt = story.publishAt ? new Date(story.publishAt) : null
+      const expiresAt = story.expiresAt ? new Date(story.expiresAt) : null
+
+      let hasAccess = false
+
+      if (story.authorId === session.user.id) {
+        // User owns the story
+        hasAccess = true
+      } else if (story.visibility === "anonymous_public" && 
+                (!publishAt || publishAt <= now) && 
+                (!expiresAt || expiresAt > now)) {
+        // Public story that's published and not expired
+        hasAccess = true
+      } else if (story.visibility === "trusted_circle" && 
+                story.selectedUserIds && 
+                story.selectedUserIds.includes(session.user.id) &&
+                (!publishAt || publishAt <= now) && 
+                (!expiresAt || expiresAt > now)) {
+        // Trusted circle story and user is in the circle
+        hasAccess = true
+      }
+
+      if (!hasAccess) {
+        return NextResponse.json({ error: "Access denied" }, { status: 403 })
+      }
+
       // Get persona for the comment
       let persona
       if (personaId) {
@@ -143,6 +171,7 @@ import path from 'path'
     { params }: { params: Promise<{ id: string }> }
   ) {
     try {
+      const session = await getServerSession(authOptions)
       const { id: storyId } = await params
 
       // Create data directory if it doesn't exist
@@ -152,6 +181,54 @@ import path from 'path'
       }
 
       const commentsFile = path.join(dataDir, 'comments.json')
+      const storiesFile = path.join(dataDir, 'stories.json')
+
+      // Read stories to verify access
+      let stories = []
+      if (fs.existsSync(storiesFile)) {
+        const storiesData = fs.readFileSync(storiesFile, 'utf-8')
+        try {
+          stories = JSON.parse(storiesData)
+        } catch (e) {
+          stories = []
+        }
+      }
+
+      // Find the story
+      const story = stories.find(s => s.id === storyId)
+      if (!story) {
+        return NextResponse.json({ error: "Story not found" }, { status: 404 })
+      }
+
+      // Check if user has access to view comments
+      const now = new Date()
+      const publishAt = story.publishAt ? new Date(story.publishAt) : null
+      const expiresAt = story.expiresAt ? new Date(story.expiresAt) : null
+
+      let hasAccess = false
+
+      if (story.visibility === "anonymous_public" && 
+          (!publishAt || publishAt <= now) && 
+          (!expiresAt || expiresAt > now)) {
+        // Public story - anyone can view comments
+        hasAccess = true
+      } else if (session?.user?.id) {
+        if (story.authorId === session.user.id) {
+          // User owns the story
+          hasAccess = true
+        } else if (story.visibility === "trusted_circle" && 
+                  story.selectedUserIds && 
+                  story.selectedUserIds.includes(session.user.id) &&
+                  (!publishAt || publishAt <= now) && 
+                  (!expiresAt || expiresAt > now)) {
+          // Trusted circle story and user is in the circle
+          hasAccess = true
+        }
+      }
+
+      if (!hasAccess) {
+        return NextResponse.json({ error: "Access denied" }, { status: 403 })
+      }
 
       // Read existing comments
       let comments = []
@@ -168,8 +245,7 @@ import path from 'path'
       const storyComments = comments.filter(comment => comment.storyId === storyId)
 
       // Sort by creation date (newest first)
-      storyComments.sort((a, b) => new Date(b.createdAt).getTime() - new
-  Date(a.createdAt).getTime())
+      storyComments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 
       return NextResponse.json(storyComments)
     } catch (error) {
