@@ -126,7 +126,6 @@ import path from 'path'
       }
 
       // Create the comment
-      const now = new Date()
       const timestamp = now.toISOString()
 
       const comment = {

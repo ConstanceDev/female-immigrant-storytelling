@@ -78,9 +78,12 @@ export default function TrustedCircle() {
         const data = await response.json()
         // Filter for trusted circle stories where current user has access
         const trustedCircleStories = data.filter((story: Story) => 
-          story.visibility === "trusted_circle" && 
-          story.selectedUserIds && 
-          story.selectedUserIds.includes(session?.user?.id)
+          story.visibility === "trusted_circle" && (
+            // Stories shared with this user
+            (story.selectedUserIds && story.selectedUserIds.includes(session?.user?.id)) ||
+            // Stories created by this user
+            (story.authorId === session?.user?.id)
+          )
         )
         setStories(trustedCircleStories)
         setFilteredStories(trustedCircleStories)

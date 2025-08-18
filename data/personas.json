@@ -16,5 +16,14 @@
     "isDefault": false,
     "createdAt": "2025-07-23T14:41:57.065Z",
     "updatedAt": "2025-07-30T20:41:21.055Z"
+  },
+  {
+    "id": "persona_1755446753975_km13d0yq6f",
+    "userId": "106241191154358954961",
+    "pseudonym": "User4961",
+    "avatarSeed": "106241191154358954961",
+    "isDefault": true,
+    "createdAt": "2025-08-17T16:05:53.975Z",
+    "updatedAt": "2025-08-17T16:05:53.975Z"
   }
 ]

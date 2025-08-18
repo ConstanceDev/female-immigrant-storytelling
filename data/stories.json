@@ -265,5 +265,38 @@
     "_count": {
       "comments": 0
     }
+  },
+  {
+    "id": "1755549568540",
+    "title": "The Language of Belonging",
+    "content": "They ask me where I'm from, and I freeze. Not because I don't know the answer, but because I have too many answers, and none of them feel complete.\n\nIn Arabic, we have a word: ghorba (غربة). It means exile, but it's deeper than that. It's the ache of being a stranger, the weight of carrying two worlds in your chest when the world only wants to see one.\n\nI came here three years ago with a suitcase full of dreams and a heart full of my grandmother's prayers. I thought learning English would be the hardest part. I was wrong. The hardest part was learning to translate myself—not just my words, but my experiences, my jokes, my silences.\n\nAt work, I am the quiet one. They don't see the woman who debates politics with passion, who tells stories that make her family cry with laughter, who dreams in three languages and wakes up homesick for places that exist only in memory.\n\nYesterday, my daughter came home from school and asked why we couldn't just \"be normal.\" My heart broke in two languages. How do you explain to a child that normal is a privilege we're still earning? That our accents carry stories, not mistakes?\n\nBut today, I choose to celebrate the complexity. I am the bridge between worlds, the keeper of traditions, the translator of dreams. I am home to myself, even when the world tells me I'm still a guest.\n\nTo the women reading this who feel caught between worlds: you are not lost. You are vast. You contain multitudes, and that is your strength.",
+    "contentType": "text",
+    "mediaFiles": [],
+    "tags": [
+      "immigration",
+      "culture",
+      "identity",
+      "language"
+    ],
+    "contentWarnings": [],
+    "visibility": "trusted_circle",
+    "selectedUserIds": [
+      "118081953351798648893"
+    ],
+    "expiresAt": null,
+    "publishAt": null,
+    "geoRestrictions": [],
+    "searchIndexable": false,
+    "authorId": "118081953351798648892",
+    "personaId": "persona_1753281717065_l2t9mm2qdj",
+    "createdAt": "2025-08-18T20:39:28.540Z",
+    "updatedAt": "2025-08-18T20:39:28.540Z",
+    "author": {
+      "pseudonym": "Second Persona",
+      "avatarSeed": "118081953351798648892_1753281709959"
+    },
+    "_count": {
+      "comments": 0
+    }
   }
 ]
