@@ -164,12 +164,20 @@ export default function Resources() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Flex justify="between" align="center" className="h-16">
             <Heading size="6">UK Support Resources</Heading>
-            <Button
-              variant="outline"
-              onClick={() => router.push("/")}
-            >
-              Back to Home
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={() => router.push("/dashboard")}
+              >
+                Back to Dashboard
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => router.push("/")}
+              >
+                Back to Home
+              </Button>
+            </div>
           </Flex>
         </div>
       </header>
@@ -333,12 +341,13 @@ export default function Resources() {
                   Having trouble with the website, need to report an issue, or want to share feedback?
                   Our support team is here to help make your experience better.
                 </Text>
+                <div className="mb-3"></div>
                 <div>
                 <Button
                   onClick={() => router.push("/support")}
                   className="bg-purple-600 hover:bg-purple-700 text-white"
                 >
-                  Contact Support & Feedback
+                  Contact Us
                 </Button>
                 </div>
 

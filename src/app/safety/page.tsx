@@ -85,27 +85,16 @@ export default function Safety() {
 
     return (
     <div className="min-h-screen bg-gray-50">
-      {/* Quick Exit Button - Always Visible */}
-      <div className="fixed top-4 right-4 z-50">
-        <Button
-          onClick={handleQuickExit}
-          style={{ backgroundColor: '#dc2626', color: 'white' }}
-          className="shadow-lg"
-        >
-          🚨 Quick Exit
-        </Button>
-      </div>
-
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Flex justify="between" align="center" className="h-16">
-            <Heading size="6">Safety & Support</Heading>
+            <Heading size="6">Safety & Crisis Support</Heading>
             <Button
               variant="outline"
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/dashboard")}
             >
-              Back to Home
+              Back to Dashboard
             </Button>
           </Flex>
         </div>

@@ -235,12 +235,12 @@
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                     <Text size="6">🤝</Text>
                   </div>
-                  <Heading size="4">Get Support</Heading>
+                  <Heading size="4">Community Resources</Heading>
                   <Text size="2" className="text-center text-gray-600">
-                    Access UK resources and support services
+                    UK services, housing, healthcare & legal aid
                   </Text>
                   <Button size="2" variant="outline" className="mt-2">
-                    Find Help
+                    Browse Resources
                   </Button>
                 </Flex>
               </Card>
@@ -254,15 +254,34 @@
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                   <Text size="6">💬</Text>
                 </div>
-                <Heading size="4">Support & Feedback</Heading>
+                <Heading size="4">Help & Feedback</Heading>
                 <Text size="2" className="text-center text-gray-600">
-                  Get help or share feedback about the platform
+                  Report issues, request features & contact us
                 </Text>
                 <Button size="2" variant="outline" className="mt-2">
                   Contact Us
                 </Button>
               </Flex>
             </Card>
+
+              {/* Safety & Support Card */}
+              <Card 
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer border-red-200"
+                onClick={() => router.push("/safety")}
+              >
+                <Flex direction="column" gap="4" align="center">
+                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                    <Text size="6">🚨</Text>
+                  </div>
+                  <Heading size="4">Crisis Support</Heading>
+                  <Text size="2" className="text-center text-gray-600">
+                    Emergency helplines & mental health resources
+                  </Text>
+                  <Button size="2" variant="outline" className="mt-2 text-red-600 border-red-300 hover:bg-red-50">
+                    Emergency Help
+                  </Button>
+                </Flex>
+              </Card>
             </div>
 
             {/* Your Stories Section */}
