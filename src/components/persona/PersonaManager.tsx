@@ -27,7 +27,7 @@ export default function PersonaManager() {
     const [newPseudonym, setNewPseudonym] = useState("")
     const [error, setError] = useState("")
 
-  useEffect(() => {
+useEffect(() => {
         if (session?.user?.id) {
             fetchPersonas()
         }
@@ -190,7 +190,7 @@ export default function PersonaManager() {
                   <Text size="3" weight="medium">
                     {persona.pseudonym}
                   </Text>
-                  <Text size="2" color="gray" className="block">
+                  <Text size="3" color="gray" className="block">
                     {persona.isDefault ? "Default persona" : "Custom persona"}
                   </Text>
                   <Text size="1" color="gray">

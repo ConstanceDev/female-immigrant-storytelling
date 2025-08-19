@@ -216,9 +216,10 @@ function SupportPageContent() {
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Category Selection */}
                     <div>
-                    <Text as="label" size="4" weight="medium" className="block mb-4">
+                    <Text as="label" size="4" weight="medium" className="block mb-">
                         What can we help you with? *
                     </Text>
+                    <div className="mb-3"></div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {feedbackCategories.map(({ value, label, icon: Icon, color }) => (
                         <div key={value}>
