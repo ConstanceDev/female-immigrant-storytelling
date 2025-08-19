@@ -119,7 +119,7 @@ function SupportPageContent() {
         <header className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Flex justify="between" align="center" className="h-16">
-            <Heading size="5">Support & Feedback</Heading>
+            <Heading size="5">Help & Feedback</Heading>
             <Button 
                 variant="outline" 
                 onClick={() => router.push("/dashboard")}
@@ -169,6 +169,7 @@ function SupportPageContent() {
                 <Text size="2" className="mb-3 text-red-700">
                 In crisis or immediate danger?
                 </Text>
+                <div className="mb-3"></div>
                 <Button 
                 color="red" 
                 size="2"
@@ -176,7 +177,7 @@ function SupportPageContent() {
                 className="w-full"
                 >
                 <AlertCircle size={16} />
-                Safety Resources
+                Crisis Support
                 </Button>
             </Card>
 
